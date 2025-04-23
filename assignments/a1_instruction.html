@@ -1,0 +1,714 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A1: Tell us about yourself! Using R and Python</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1bd9f96e-057f-8060-9b34-f52282e615b7" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><h1 class="page-title">A1: Tell us about yourself! Using R and Python</h1><p class="page-description"></p></header><div class="page-body"><p id="1be9f96e-057f-809a-bec7-e53f23205b92" class="">
+</p><nav id="1be9f96e-057f-80e6-b02d-f8ae7dddc66f" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1be9f96e-057f-8025-bb1f-d9b546e64f43">Using R</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-80cc-b478-c5e7772294eb">Install R and R studio</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1c09f96e-057f-8090-a4ef-da0de662a44c">Introduction to R</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-80e8-9310-d06579efe5a1">Download <code>introduction.Rmd</code></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-80ee-bbdc-c03c92567e5e">Edit file</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-80dd-8b83-dc5fb04becf9"><strong>Run chunk</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-8021-8685-dd0ba8780e09">Save output as PDF</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1be9f96e-057f-8062-b4ef-eb5eaa52f8dc">Using Python</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1c09f96e-057f-809a-af64-dbc4afb45378">Introduction to Python</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-80f7-a371-f337e854901a">Google Colab</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-8017-90ad-cd379a0d5660">Download <code>introduction.ipynb</code></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-8030-9115-f45b4718289c">Upload file to Google Colab</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-8057-b6a0-cdc3774a4299">Edit file</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-8040-9369-cc85193b3506">Run cell</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-80fb-b0ca-c80e8f125da3">Save notebook</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1be9f96e-057f-80bb-aa7d-e0b4aeba0ff8">Share the file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1be9f96e-057f-8068-b413-eb4a9394f004">Submission</a></div></nav><p id="1be9f96e-057f-80b9-96be-d61c782bafe2" class="">
+</p><hr id="1be9f96e-057f-80ba-be5f-f0cbbc7fcdeb"/><p id="1c09f96e-057f-80f2-b31e-d9c75e08dada" class="">
+</p><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="1be9f96e-057f-8046-a8e8-dc05e933654c"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/laptop_gray.svg"/></div><div style="width:100%"><ul id="1be9f96e-057f-8013-91f0-e1057b56f4af" class="bulleted-list"><li style="list-style-type:disc">For this assignment, you will minimally edit some of the already written R and Python scripts and submit the modified files.</li></ul><ul id="1be9f96e-057f-8024-82e9-ee67b0870ffd" class="bulleted-list"><li style="list-style-type:disc">There are two things you should submit: <ol type="1" id="1be9f96e-057f-8059-805c-dd48cfb687ad" class="numbered-list" start="1"><li><code>introducion.pdf</code> : a pdf file compiled using R markdown</li></ol><ol type="1" id="1be9f96e-057f-808f-97cd-f519c22da8f6" class="numbered-list" start="2"><li><strong>URL</strong> to your Google Colab notebook page</li></ol></li></ul><ul id="1be9f96e-057f-8085-a0c5-ceb3a739a698" class="bulleted-list"><li style="list-style-type:disc">Tip: Search <code>TODO</code> to find lines that need to be edited.</li></ul></div></figure><h1 id="1be9f96e-057f-8025-bb1f-d9b546e64f43" class="">Using R</h1><h2 id="1be9f96e-057f-80cc-b478-c5e7772294eb" class="">Install R and R studio</h2><p id="1be9f96e-057f-8071-9a3a-d8166dec130e" class="">If you don’t have R yet, please go ahead and download R and R studio. R studio allows a neat visual interface with R, so I’d recommend you downloading it.</p><ul id="1be9f96e-057f-80c1-8a8d-ea83788771d0" class="bulleted-list"><li style="list-style-type:disc">Visit <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a> and download R and R studio.</li></ul><ul id="1be9f96e-057f-80e0-b663-fbb3c30e8d7b" class="bulleted-list"><li style="list-style-type:disc">We will use what is called an R markdown. This blog has quick introduction to it: <a href="https://afit-r.github.io/r_markdown">https://afit-r.github.io/r_markdown</a>. Each “chunk” always begins with a <code>```{r}</code> and end with a <code>```</code>. As you can see in the blog, you can include different options like <code>```{r echo=False}</code> in the beginning of a chunk, depending on what you like. We won&#x27;t worry about these optional settings for now. But always make sure to begin and end the chunk with those.</li></ul><h2 id="1c09f96e-057f-8090-a4ef-da0de662a44c" class="">Introduction to R</h2><p id="1c09f96e-057f-8097-9dd9-c0667e4c7ef4" class="">If you are less familiar with R, see <strong>Part 2</strong> in <a href="https://learningstatisticswithr.com/lsr-0.6.pdf">https://learningstatisticswithr.com/lsr-0.6.pdf</a></p><h2 id="1be9f96e-057f-80e8-9310-d06579efe5a1" class="">Download <code>introduction.Rmd</code></h2><p id="1be9f96e-057f-804d-98b2-cd790194df66" class="">You will work with this file. (You should save it as a text file and change the extension, or you can also download the file directly from Canvas.)</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1be9f96e-057f-8063-869c-c87dafcbbf92"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%"><figure id="1be9f96e-057f-80ba-82bb-c146a97e62e8"><div class="source"><a href="a1_files/introduction.rmd">introduction.Rmd</a></div></figure></div></figure><h2 id="1be9f96e-057f-80ee-bbdc-c03c92567e5e" class="">Edit file</h2><ul id="1be9f96e-057f-80b9-b9df-ee65394e5963" class="bulleted-list"><li style="list-style-type:disc">If you don’t have R markdown, you can easily download it by entering:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1be9f96e-057f-8030-821b-c56eba65e4eb" class="code"><code class="language-R">install.packages(&quot;rmarkdown&quot;)</code></pre></li></ul><ul id="1be9f96e-057f-8093-aa5c-d799e77a6328" class="bulleted-list"><li style="list-style-type:disc">You will see a guideline inside the R markdown (.Rmd) script. Your task is to assign the variables with your response.</li></ul><ul id="1be9f96e-057f-80fc-af66-fa927b1c9cb2" class="bulleted-list"><li style="list-style-type:disc">The first chunk will look like this:<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1be9f96e-057f-8040-882c-f93ab642078c" class="code"><code class="language-R"># Assign variables
+```{r}
+# TODO: Assign a value to the variable with your name
+NAME &lt;- &quot;Sanghee Kim&quot;
+
+# TODO: Replace/assign values with your
+#       linguistic research interest, experience, and programming knowledge.
+#       Also talk about some things you like!
+interest &lt;- &quot;Your topics of interest in linguistic research.&quot;
+experience &lt;- &quot;Your background or experience related to linguistic research.&quot;
+favorite_fruit &lt;- 
+hobby &lt;- 
+```</code></pre><p id="1be9f96e-057f-8036-9c50-d79ad3fec868" class="">You should replace some variables with your response, and fill in the missing values for the variables (e.g., “favorite_fruit”). </p></li></ul><ul id="1be9f96e-057f-80e8-94b3-f6b6654af841" class="bulleted-list"><li style="list-style-type:disc">The second chunk looks like below. There’s nothing you should modify.<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1be9f96e-057f-80a7-b355-e20e853dbe5e" class="code"><code class="language-R"># Print the assigned values with line breaks
+print(
+    f&quot;Name: {NAME}\n&quot;
+    f&quot;Research Interest: {interest}\n&quot;
+    f&quot;Experience: {experience}\n&quot;
+    f&quot;Programming Languages: {programming_language}\n&quot;
+    f&quot;Favorite Fruit: {favorite_fruit}\n&quot;
+    f&quot;Hobby: {hobby}&quot;
+)</code></pre></li></ul><h2 id="1be9f96e-057f-80dd-8b83-dc5fb04becf9" class=""><strong>Run chunk</strong></h2><ul id="1be9f96e-057f-8024-8908-cf6ac9ff3a34" class="bulleted-list"><li style="list-style-type:disc">Once you edited the chunk, you can see if you can run the chunk. See the little green arrow (▶️) on the top right corner of the screenshot below? Click that to run chunk. Again, make sure that each chunk begins with a <code>```{r}</code> and end with a <code>```</code> , as you can see below. <figure id="1be9f96e-057f-8095-b530-eb428a475c73" class="image"><a href="a1_files/image.png"><img style="width:681.984375px" src="a1_files/image.png"/></a></figure></li></ul><ul id="1be9f96e-057f-80ad-aba4-f2ae88b32556" class="bulleted-list"><li style="list-style-type:disc">Run the second chunk as well, as check if you see the printed output, as you can see below. If you do without any error messages, hurray, you did it!<figure id="1be9f96e-057f-80f7-96cd-d04e48ed1dfc" class="image"><a href="a1_files/image%201.png"><img style="width:709.984375px" src="a1_files/image%201.png"/></a></figure></li></ul><ul id="1be9f96e-057f-80fe-b982-f91ee3ad773a" class="bulleted-list"><li style="list-style-type:disc">Go to <strong>File &gt; Save.</strong></li></ul><h2 id="1be9f96e-057f-8021-8685-dd0ba8780e09" class="">Save output as PDF</h2><ul id="1be9f96e-057f-804a-8942-dad819c08412" class="bulleted-list"><li style="list-style-type:disc">Once you checked everything works fine, i.e., no error messages and you entered all your information, you will “knit” this markdown file as PDF.</li></ul><ul id="1be9f96e-057f-80f3-b2a0-f1b041b0faaa" class="bulleted-list"><li style="list-style-type:disc">On the top of your screen, you will see a 🧶 (in blue) “Knit” icon. Click on the tiny arrow (🔽). You will then see multiple options. Click on “Knit to PDF.”</li></ul><figure id="1be9f96e-057f-8065-ac4f-c5d668ee8974" class="image"><a href="a1_files/image%202.png"><img style="width:480px" src="a1_files/image%202.png"/></a></figure><ul id="1be9f96e-057f-80bf-b405-de2f57c55b34" class="bulleted-list"><li style="list-style-type:disc">Once you do this, you should see a PDF file with the same name as your .Rmd you were working on. That output will look like below. <figure id="1be9f96e-057f-805f-9fe5-e138fad9fb76" class="image"><a href="a1_files/c9d20cab-53ff-46b5-8825-bc5933490cff.png"><img style="width:307.4509803921569px" src="a1_files/c9d20cab-53ff-46b5-8825-bc5933490cff.png"/></a></figure></li></ul><p id="1be9f96e-057f-80f2-8ced-d5e048ba3dfc" class=""><mark class="highlight-red_background"><strong>This is the one of the two files you should submit.</strong></mark></p><p id="1be9f96e-057f-80f3-96bf-dea0194ae432" class="">
+</p><h1 id="1be9f96e-057f-8062-b4ef-eb5eaa52f8dc" class="">Using Python</h1><h2 id="1c09f96e-057f-809a-af64-dbc4afb45378" class="">Introduction to Python</h2><p id="1c09f96e-057f-803a-914e-d9d83606f4ec" class="">If you’re new to Python, see <strong>Section 3</strong> in <a href="https://docs.python.org/3/tutorial/">https://docs.python.org/3/tutorial/</a> (other sections such as Sections 4, 5, and 7 will be relevant later).</p><p id="1c09f96e-057f-80a0-8408-d30b3b003de7" class="">
+</p><h2 id="1be9f96e-057f-80f7-a371-f337e854901a" class="">Google Colab</h2><p id="1be9f96e-057f-8075-8ed1-d0b175f0be78" class="">We will use Google Colab to work with code written in Python. You don’t need to download anything software.</p><h2 id="1be9f96e-057f-8017-90ad-cd379a0d5660" class="">Download <code>introduction.ipynb</code></h2><p id="1be9f96e-057f-8075-9117-e87afe483810" class="">You will work with this file. (You should save it as a text file and change the extension, or you can also download the file directly from Canvas.)</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1be9f96e-057f-80cd-8b52-fbe7e2a7be5e"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%"><figure id="1be9f96e-057f-80ac-b63f-f04941b6ce12"><div class="source"><a href="a1_files/introduction.ipynb">introduction.ipynb</a></div></figure></div></figure><p id="1c29f96e-057f-802a-ba99-e14ffe85fc39" class="">
+</p><h2 id="1be9f96e-057f-8030-9115-f45b4718289c" class="">Upload file to Google Colab</h2><ol type="1" id="1be9f96e-057f-80c4-b8a4-c1533f1207f8" class="numbered-list" start="1"><li>First, go to <a href="https://colab.research.google.com/">https://colab.research.google.com/</a> (<a href="https://colab.research.google.com/">https://colab.research.google.com/</a>) (You should log into your google account).</li></ol><ol type="1" id="1be9f96e-057f-80e7-8eb3-f9acc64d42b7" class="numbered-list" start="2"><li>Click “New Notebook”</li></ol><ol type="1" id="1be9f96e-057f-80c8-8471-c9577ce60669" class="numbered-list" start="3"><li>Go to File &gt; Upload notebook<figure id="1be9f96e-057f-8085-b15e-c9a756511a4c" class="image"><a href="a1_files/image%203.png"><img style="width:2862px" src="a1_files/image%203.png"/></a></figure></li></ol><ol type="1" id="1be9f96e-057f-8070-8992-e3d0984e1847" class="numbered-list" start="4"><li>Upload the downloaded <code>introduction.ipynb</code> to your current notebook.<p id="1be9f96e-057f-806d-8073-f09daf0bdf46" class="">Once the notebook file is successfully uploaded, your page will look like below.</p><figure id="1be9f96e-057f-80da-a505-fbd21809610a" class="image"><a href="a1_files/image%204.png"><img style="width:681.9921875px" src="a1_files/image%204.png"/></a></figure></li></ol><p id="1be9f96e-057f-809d-b6da-d2bb124026ea" class="">
+</p><h2 id="1be9f96e-057f-8057-b6a0-cdc3774a4299" class="">Edit file</h2><p id="1be9f96e-057f-806e-a546-dd4aefb1424a" class="">Now, edit the file as you did with the R markdown file. You should re-assign all the variables with new values.</p><h2 id="1be9f96e-057f-8040-9369-cc85193b3506" class="">Run cell</h2><ul id="1be9f96e-057f-805e-ab94-d838a3a5d033" class="bulleted-list"><li style="list-style-type:disc">If you hover over your mouse cursor around top left corner of the cell, you will see an arrow (▶️) popping up automatically. Click that to run cell.<figure id="1be9f96e-057f-80cf-9bb9-e73991cee789" class="image"><a href="a1_files/image%205.png"><img style="width:709.96875px" src="a1_files/image%205.png"/></a></figure></li></ul><ul id="1be9f96e-057f-80c4-88a3-effccfa70c09" class="bulleted-list"><li style="list-style-type:disc">Error! Uh oh, we have an error message. It looks like something is missing. Right, we missed to include the values to the last two variables. (You should also replace the existing values for the top three variables as well.)<figure id="1be9f96e-057f-807c-98c4-ecbdf2ed50b2" class="image"><a href="a1_files/image%206.png"><img style="width:681.96875px" src="a1_files/image%206.png"/></a></figure></li></ul><p id="1be9f96e-057f-80c3-bef5-c62f148f432f" class="">
+</p><h2 id="1be9f96e-057f-80fb-b0ca-c80e8f125da3" class="">Save notebook</h2><p id="1be9f96e-057f-8019-a939-ce5d3bdacc89" class="">Once all cells run without any errors, go to <strong>File &gt; Save</strong>.</p><h2 id="1be9f96e-057f-80bb-aa7d-e0b4aeba0ff8" class="">Share the file</h2><ol type="1" id="1be9f96e-057f-809b-8a4f-fbf890c5153d" class="numbered-list" start="1"><li>On the top right of your window, you will see a “Share” button. Click that, and you will see different share options. <strong>Click “Anyone with the link”.</strong><figure id="1be9f96e-057f-80a2-9385-f7d15380261d" class="image"><a href="a1_files/image%207.png"><img style="width:480px" src="a1_files/image%207.png"/></a></figure></li></ol><ol type="1" id="1be9f96e-057f-801e-bd3a-cef472e03874" class="numbered-list" start="2"><li>Then change the role to <strong>“Commentator”.</strong><figure id="1be9f96e-057f-802c-9fde-d7f095a18f8e" class="image"><a href="a1_files/image%208.png"><img style="width:432px" src="a1_files/image%208.png"/></a></figure></li></ol><ol type="1" id="1be9f96e-057f-80e2-a626-dc2c09c0b25e" class="numbered-list" start="3"><li>Then click <strong>“Copy link”</strong> below. <mark class="highlight-red_background"><strong>The link you have is what you should submit.</strong></mark><figure id="1be9f96e-057f-80b0-a1cb-c080d556207d" class="image"><a href="a1_files/image%209.png"><img style="width:528px" src="a1_files/image%209.png"/></a></figure></li></ol><p id="1be9f96e-057f-80e7-b669-ecff25755be4" class="">
+</p><h1 id="1be9f96e-057f-8068-b413-eb4a9394f004" class="">Submission</h1><p id="1be9f96e-057f-80fc-94d2-e2cf2f2d7cbe" class="">Go to Assignment submission page. Upload:</p><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="1be9f96e-057f-80d7-9d9e-c6e305719068"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/laptop_gray.svg"/></div><div style="width:100%"><ol type="1" id="1be9f96e-057f-8003-abc8-e8b0b132682f" class="numbered-list" start="1"><li>The pdf file generated with using R markdown (<code>introduction.pdf</code>).</li></ol><ol type="1" id="1be9f96e-057f-8011-8ae5-f7458fcebb79" class="numbered-list" start="2"><li>URL copied from your Google Colab notebook — make sure this is the edited version and it runs without any error messages.</li></ol></div></figure><p id="1be9f96e-057f-8096-8893-ded16c8f7238" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

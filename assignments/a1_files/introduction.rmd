@@ -1,0 +1,36 @@
+---
+title: "Introduction"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Assign variables
+```{r}
+# TODO: Assign a value to the variable with your name
+# NAME = "Sanghee Kim" # For me, it would look like this
+NAME <- "Sanghee Kim"
+
+# TODO: Replace/assign values with your
+#       linguistic research interest, experience, and programming knowledge.
+#       Also talk about some things you like!
+interest <- "Your topics of interest in linguistic research."
+experience <- "Your background or experience related to linguistic research."
+programming_language <- "Your familiarity with JavaScript, HTML, R, and Python. 
+                         Say 'no experience' if none."
+favorite_fruit <- 
+hobby <- 
+```
+
+# Print
+```{r}
+# Print the assigned values with line breaks
+cat(
+    "Name:", NAME, "\n",
+    "Research Interest:", interest, "\n",
+    "Experience:", experience, "\n",
+    "Programming Languages:", programming_language, "\n",
+    "Favorite Fruit:", favorite_fruit, "\n",
+    "Hobby:", hobby, "\n"
+)
+```

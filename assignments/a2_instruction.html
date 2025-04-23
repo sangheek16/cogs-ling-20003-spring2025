@@ -1,0 +1,700 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A2: Lexical decision task</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1bd9f96e-057f-8069-9859-f585104905c3" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><h1 class="page-title">A2: Lexical decision task</h1><p class="page-description"></p></header><div class="page-body"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1bd9f96e-057f-808c-bb2f-e84be0882e55"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/laptop_gray.svg"/></div><div style="width:100%"><p id="1bd9f96e-057f-8043-85fd-f3e0e5e693fa" class="">We discussed lexical access, and how a lexical decision task can be a useful method for understanding lexical access. </p><p id="1bd9f96e-057f-809b-8524-c2f82e47ed71" class="">This assignment covers 1) <strong>material creation</strong> and 2) <strong>experimental setup. </strong></p><p id="1bd9f96e-057f-80e0-b79a-df1e375bb201" class="">For 2), you will set up an experiment for a lexical decision task (which targets semantic and phonological priming effects) using PCIbex.</p><p id="1bd9f96e-057f-80d1-a38d-dca7da70255c" class="">For 1), you will manually create new experimental materials.</p><p id="1bd9f96e-057f-809a-ab63-feff88e51688" class="">
+</p><nav id="1bd9f96e-057f-80a2-9091-db01def65358" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1be9f96e-057f-806d-aac3-fa0a2a329cd8">Experimental material</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1bd9f96e-057f-80e3-a9f1-fe9b104deace">PCIbex</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd9f96e-057f-80f8-9131-dc19fd6ec30a">Create an account on PCIbex</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd9f96e-057f-8063-aa18-fe39bf98c5eb">Start a new project</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1bd9f96e-057f-8048-bd1c-cc492b8cee69">Experiment setup</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1bd9f96e-057f-8098-b907-df79b1ea69c4">Task</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd9f96e-057f-801b-ac74-f293175fce55">1. Creating missing competitors</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd9f96e-057f-8008-b809-ccd6d9268c71">2. Fill in the missing lines in <code>main.js</code></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd9f96e-057f-8053-be89-d618ecb7c107">3. Check if the experiment runs</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1ca9f96e-057f-8049-8011-d107ac399ddb">Upload file to your PCIbex Project</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1bd9f96e-057f-8053-84d3-e0ae8e5b2909">Preview your experiment</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1ca9f96e-057f-80c0-9e7b-c8e2a8941814">4. Include your reflection</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd9f96e-057f-80b4-80c0-ebb3f9773de1">5. Submit your assignment</a></div></nav></div></figure><p id="1bd9f96e-057f-8093-b2a2-d9392a778a1f" class="">
+</p><hr id="1bd9f96e-057f-806d-8916-c2e8a6d93944"/><h1 id="1be9f96e-057f-806d-aac3-fa0a2a329cd8" class="">Experimental material</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1be9f96e-057f-80b0-a12e-ca198d6aaa5c"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%"><figure id="1ca9f96e-057f-80f2-8859-f714cb8e8692"><div class="source"><a href="A2%20Lexical%20decision%20task%20a2_files/material-worksheet.csv">material-worksheet.csv</a></div></figure><p id="1be9f96e-057f-80dd-82ce-cade147b415e" class="">This .csv file is a worksheet (hence some of the rows are missing) that contains experimental design and materials for the lexical decision task.</p></div></figure><h1 id="1bd9f96e-057f-80e3-a9f1-fe9b104deace" class="">PCIbex</h1><h2 id="1bd9f96e-057f-80f8-9131-dc19fd6ec30a" class="">Create an account on PCIbex</h2><p id="1bd9f96e-057f-803a-b881-df51542d5a62" class="">Go to <a href="https://farm.pcibex.net/">https://farm.pcibex.net/</a> then sign up.</p><h2 id="1bd9f96e-057f-8063-aa18-fe39bf98c5eb" class="">Start a new project</h2><p id="1bd9f96e-057f-80f1-ac02-d15e5b63e71b" class="">Click <em>Empty Project, </em>then you will see a page like this below. You can rename the project (e.g., lexical decision task).<div class="indented"><figure id="1bd9f96e-057f-80c1-af65-e48ba04b49eb" class="image"><a href="A2%20Lexical%20decision%20task%20a2_files/image.png"><img style="width:2880px" src="A2%20Lexical%20decision%20task%20a2_files/image.png"/></a></figure></div></p><p id="1bd9f96e-057f-804c-9cb3-ea3f17f3cd02" class="">
+</p><p id="1bd9f96e-057f-801b-b673-c2101f0fcc86" class="">
+</p><h1 id="1bd9f96e-057f-8048-bd1c-cc492b8cee69" class="">Experiment setup</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1bd9f96e-057f-8086-8502-eda856ef31ca"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%"><figure id="1ca9f96e-057f-804d-b35e-d7415d3cda09"><div class="source"><a href="A2%20Lexical%20decision%20task%20a2_files/pcibex-1.zip">pcibex-1.zip</a></div></figure><p id="1bd9f96e-057f-80de-a338-ca1e8ddc948b" class="">This file contains files used for setting up the a lexical decision task on PCIbex.</p></div></figure><p id="1bd9f96e-057f-8081-918d-e56d2247d454" class="">Download and unzip the file. Go to the <code>data_includes</code> folder, and you will find <code>main.js</code> in it. </p><p id="1ca9f96e-057f-80fb-9d17-d62b02bcd81c" class="">For editing this javascript file, you can i) either use the PCIbex editor, or ii) use a text editor to work on the file. I personally use a text editor (called Visual Studio Code) since it tells me missing brackets or dots that are crucial for running the code. PCIbex editor is sometimes a bit slow in updating changes, so if you’re using the PCIbex’s built-in editor, make sure all the changes you have made are saved before leaving the page or running the experiment.</p><p id="1ca9f96e-057f-80c6-9171-d74d404cd816" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ca9f96e-057f-80a1-a69f-c1b521a7466d"><div style="width:100%"><p id="1ca9f96e-057f-807d-ba2b-e68cec137003" class="">For the Ibex Farm document, see:</p><figure id="1ca9f96e-057f-80f3-8980-d73734830ff6"><div class="source">https://github.com/addrummond/ibex/blob/master/docs/manual.md</div></figure></div></figure><h1 id="1bd9f96e-057f-8098-b907-df79b1ea69c4" class="">Task</h1><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="1bd9f96e-057f-808d-855e-f5cbd69185a7"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/light-bulb_gray.svg"/></div><div style="width:100%"><ol type="1" id="1bd9f96e-057f-80c2-80a5-feb289bf18c8" class="numbered-list" start="1"><li>Create missing competitor/target words,</li></ol><ol type="1" id="1bd9f96e-057f-80c1-ab9e-ec09496d7b95" class="numbered-list" start="2"><li>Edit the <code>main.js</code> file,</li></ol><ol type="1" id="1bd9f96e-057f-80b0-a7e3-ee609166277e" class="numbered-list" start="3"><li>Check if the experiment runs,</li></ol><ol type="1" id="1ca9f96e-057f-8013-95bd-d5aca997cd14" class="numbered-list" start="4"><li>Include a short reflection on the assignment as a comment in the .js file</li></ol><ol type="1" id="1bd9f96e-057f-80e7-9484-ffd424152629" class="numbered-list" start="5"><li>Submit the project URL to the Assignment page.</li></ol></div></figure><p id="1bd9f96e-057f-8029-95ca-dc0574cc671a" class="">
+</p><h2 id="1bd9f96e-057f-801b-ac74-f293175fce55" class="">1. Creating missing competitors</h2><p id="1ca9f96e-057f-803c-b580-cd84ea44a0be" class="">In the .csv file you downloaded, you’ll see that critical items from 11 to 15, and filler items from 26 to 30 are missing.</p><p id="1ca9f96e-057f-80d5-a1a0-c02dbaa54ff1" class="">
+</p><p id="1bd9f96e-057f-80a9-a29c-c5067f809dbb" class=""><strong>Critical items: Create competitor words</strong></p><ul id="1bd9f96e-057f-803d-87fa-e6b9cbdb41ff" class="bulleted-list"><li style="list-style-type:disc">The target words for critical items 11 to 15 are: <em><mark class="highlight-default_background"><strong>shirt, steel, train, spice, spear</strong></mark></em></li></ul><ul id="1bd9f96e-057f-8025-9df0-f3df5fd56765" class="bulleted-list"><li style="list-style-type:disc">You should create new words for each of the three condition.</li></ul><ul id="1bd9f96e-057f-8036-a65b-d8c8edc77c0a" class="bulleted-list"><li style="list-style-type:disc">For example, for a target word <em><strong>shark</strong></em><em>, </em>the three words will be:<ul id="1bd9f96e-057f-8061-8fd5-e51c06b50e91" class="bulleted-list"><li style="list-style-type:circle">[semantic overlap condition] Target: <strong>SHARK</strong>; Competitor: <strong>WHALE</strong></li></ul><ul id="1bd9f96e-057f-80fc-bff7-cb8a5b816efc" class="bulleted-list"><li style="list-style-type:circle">[phonological overlap condition] Target: <strong>SHARK</strong>; Competitor: <strong>SHARP</strong></li></ul><ul id="1bd9f96e-057f-8054-8286-effc6766cba8" class="bulleted-list"><li style="list-style-type:circle">[unrelated condition] Target: <strong>SHARK</strong>; Competitor: <strong>BUTTER</strong></li></ul></li></ul><ul id="1bd9f96e-057f-809d-ab5b-de9f0a64ab98" class="bulleted-list"><li style="list-style-type:disc">Do the same for the 5 target words above.</li></ul><p id="1bd9f96e-057f-80ba-94a7-fe3271307969" class="">
+</p><p id="1bd9f96e-057f-803e-8586-c098484a2967" class=""><strong>Filler items: Create target words</strong></p><ul id="1bd9f96e-057f-8035-a49f-e86a2e272dbb" class="bulleted-list"><li style="list-style-type:disc">The competitor words for filler items 26 - 30 are:<mark class="highlight-default_background"> </mark><em><mark class="highlight-default_background"><strong>cycle, stairs, handle, left, reach</strong></mark></em></li></ul><ul id="1bd9f96e-057f-8092-ae82-fdf184888722" class="bulleted-list"><li style="list-style-type:disc">For filler items, there is only one condition. </li></ul><ul id="1bd9f96e-057f-8028-b94b-e54d35c21bac" class="bulleted-list"><li style="list-style-type:disc">You should create a nonword, a word that is not real English. For example, for a competitor word <em><strong>cat</strong></em><em>, </em>the target word will be: <strong>THAFE</strong></li></ul><ul id="1bd9f96e-057f-8023-90ed-dc804578ab21" class="bulleted-list"><li style="list-style-type:disc">Do the same for the 5 competitor words above.</li></ul><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="1bd9f96e-057f-80de-ae9e-d8ba32c5fbbb"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/exclamation-mark_gray.svg"/></div><div style="width:100%"><ol type="1" id="1bd9f96e-057f-80cb-8167-c1484e8cb1c3" class="numbered-list" start="1"><li><mark class="highlight-red_background">Make sure that the words you newly created are NOT already used in the material.</mark></li></ol><ol type="1" id="1bd9f96e-057f-806c-8f5b-f781ccc81ebc" class="numbered-list" start="2"><li><mark class="highlight-red_background">You’re making competitor words for critical items, and target words for filler items.</mark></li></ol></div></figure><p id="1bd9f96e-057f-80f1-a172-e2de60ac56c2" class="">
+</p><h2 id="1bd9f96e-057f-8008-b809-ccd6d9268c71" class="">2. Fill in the missing lines in <code>main.js</code></h2><p id="1ca9f96e-057f-8075-b9ae-ecf082e1677f" class="">There are primarily three tasks. You can find these task by searching ‘<strong>TODO</strong>’ in the file.</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1ca9f96e-057f-8017-8883-ec1a4da00c82"><div style="width:100%"><ol type="1" id="1ca9f96e-057f-802e-ae32-f2987a36393d" class="numbered-list" start="1"><li>Create <strong>three practice trials</strong>, <strong>critical trials</strong> and <strong>filler trials</strong>. These trials should be based on the .csv material file you downloaded, and your newly created items.</li></ol><ol type="1" id="1ca9f96e-057f-80ea-86f7-f04c9b6402bc" class="numbered-list" start="2"><li>Include the <strong>practice trial in the sequence</strong>.</li></ol><ol type="1" id="1ca9f96e-057f-80dc-8d20-d4f688948489" class="numbered-list" start="3"><li>Change the lag time between the competitor word and the target word to <strong>1000</strong>.</li></ol><ol type="1" id="1ca9f96e-057f-8057-ba50-e9853c350e49" class="numbered-list" start="4"><li>(optional) You can also change the competitor and target words to be all capitalized (e.g., SHARK instead of shark).</li></ol></div></figure><p id="1ca9f96e-057f-8015-98fc-e56e116d5238" class="">
+</p><p id="1bd9f96e-057f-8015-be7c-db213a743d2e" class="">Now that you created the competitor words, you will use those to fill in the missing lines in the <code>main.js</code> file. When you do this, you must <mark class="highlight-default_background"><strong>follow the same syntax and naming convention</strong></mark> in the given <code>main.js</code> file. </p><ul id="1bd9f96e-057f-80b1-bc81-f4b8d008e723" class="bulleted-list"><li style="list-style-type:disc">For example, for critical items, the (a) semantic (”sem”), (b) phonological (”phn”), and (c) unrelated (”unr”) conditions for item #11 should be labeled as below. Do the same for the rest of the critical items. Notice that <strong>the right-hand side number doesn’t change for the same item</strong>. The identifier for the sequence should look like this (this is not a complete line).<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1bd9f96e-057f-8026-a347-ded5ca538545" class="code"><code class="language-JavaScript">[&quot;critical_phn&quot;, 11] // for the semantic condition (item #11)
+[&quot;critical_sem&quot;, 11] // for the phonological condition (item #11)
+[&quot;critical_unr&quot;, 11] // for the unrelated condition (item #11)</code></pre></li></ul><ul id="1bd9f96e-057f-801d-a26c-f7af90cb50d9" class="bulleted-list"><li style="list-style-type:disc">For filler items, the identifier for the sequence should look like this (this is not a complete line). <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1bd9f96e-057f-8033-909c-d35cccd06cc5" class="code"><code class="language-JavaScript">[&quot;filler&quot;, 16] // for the filler item (item #16)</code></pre></li></ul><p id="1bd9f96e-057f-8053-8df2-ca84cf384b1d" class="">
+</p><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="1bd9f96e-057f-8040-b7d3-ceeade3b7dff"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/exclamation-mark_gray.svg"/></div><div style="width:100%"><ol type="1" id="1bd9f96e-057f-8040-8cea-e62fc414d8e7" class="numbered-list" start="1"><li>Javascript is sensitive to punctuations, such as semicolon (;) and comma (,). I left notes where you should or should not include commas — so make sure you have followed the correct syntax.</li></ol><ol type="1" id="1ca9f96e-057f-80b7-9bff-e05761d644c3" class="numbered-list" start="2"><li>If you see errors, also check if you have the right bracketing, e.g., If you started with two {{, then that line should end with }}.</li></ol></div></figure><h2 id="1bd9f96e-057f-8053-be89-d618ecb7c107" class="">3. Check if the experiment runs</h2><h3 id="1ca9f96e-057f-8049-8011-d107ac399ddb" class="">Upload file to your PCIbex Project</h3><ol type="1" id="1bd9f96e-057f-80f3-ab2e-ecb39e3d5dea" class="numbered-list" start="1"><li>If you were using a text editor:<p id="1ca9f96e-057f-8030-b3ba-ed50b0587047" class="">Now switch back to your PCIbex project page. Find the “Scripts” panel on the bottom left of the page. You will see that there is already an empty file included by default. </p><p id="1bd9f96e-057f-802f-8e73-f2d3b4154b38" class="">Drag and drop your new <code>main.js</code> file under the “Scripts” panel. Once you try to upload the new javascript file, you will see a pop-up message like below. Click “Overwrite selected files.”</p></li></ol><figure id="1bd9f96e-057f-809e-a4e1-c0509a197831" class="image"><a href="A2%20Lexical%20decision%20task%20a2_files/image%201.png"><img style="width:480px" src="A2%20Lexical%20decision%20task%20a2_files/image%201.png"/></a></figure><ol type="1" id="1bd9f96e-057f-802a-933c-e6e8dd4257f8" class="numbered-list" start="2"><li>If you were working directly using the editor on PCIbex:<p id="1ca9f96e-057f-80d4-8850-fba916491bf1" class="">There’s nothing to upload. But sometimes PCIbex is a bit slow with updates, so make sure all the changes you have made are saved.</p></li></ol><h3 id="1bd9f96e-057f-8053-84d3-e0ae8e5b2909" class="">Preview your experiment</h3><p id="1bd9f96e-057f-80a1-b582-d6a64af720cf" class="">Now that you have a new <code>main.js</code> file, let’s check if this works! Click “Open in new tab” in the Preview experiment section, which you can see on the bottom panel of your project page.</p><figure id="1bd9f96e-057f-80aa-baa0-de3e5d53babb" class="image"><a href="A2%20Lexical%20decision%20task%20a2_files/image%202.png"><img style="width:709.984375px" src="A2%20Lexical%20decision%20task%20a2_files/image%202.png"/></a></figure><p id="1bd9f96e-057f-800f-a033-c1404dc866e8" class="">
+</p><h2 id="1ca9f96e-057f-80c0-9e7b-c8e2a8941814" class="">4. Include your reflection</h2><p id="1ca9f96e-057f-8001-b2bf-d39bfad0bf44" class="">Now that you have set up an experiment for a lexical decision task, what are other modifications you would want to make as a researcher? What other components can we include in this experiment?<mark class="highlight-default_background"><strong> Type in a few sentences as a comment in the </strong></mark><mark class="highlight-default_background"><code><strong>main.js</strong></code></mark><mark class="highlight-default_background"><strong> file that you uploaded.</strong></mark></p><p id="1ca9f96e-057f-809d-84f9-cb2d0205700e" class="">You should check if the experiment still runs well, even after including your comment.</p><h2 id="1bd9f96e-057f-80b4-80c0-ebb3f9773de1" class="">5. Submit your assignment</h2><p id="1bd9f96e-057f-808c-91a2-da1e904a21a1" class="">Now that you checked the script works, you will <strong>share the link to your project.</strong></p><p id="1bd9f96e-057f-8002-8041-f230a37f52c8" class="">On the right panel of your project page, you will see “Actions” panel. Click on “Share.”</p><figure id="1bd9f96e-057f-800f-9398-caa8f8c15d6b" class="image"><a href="A2%20Lexical%20decision%20task%20a2_files/image%203.png"><img style="width:192px" src="A2%20Lexical%20decision%20task%20a2_files/image%203.png"/></a></figure><p id="1bd9f96e-057f-80d7-90d1-e689d0000a0e" class="">A pop-up box will show up, and you see a link under <strong>Demonstration link</strong>. </p><figure id="1bd9f96e-057f-8090-bf74-e10e6ed2d9de" class="image"><a href="A2%20Lexical%20decision%20task%20a2_files/image%204.png"><img style="width:432px" src="A2%20Lexical%20decision%20task%20a2_files/image%204.png"/></a></figure><p id="1bd9f96e-057f-807f-b8d6-f30dbe25d20f" class="">
+</p><p id="1bd9f96e-057f-800c-ad39-f4b222aa3c5e" class="">The final step:</p><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="1bd9f96e-057f-8095-80cb-df8a6feb3710"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/exclamation-mark_gray.svg"/></div><div style="width:100%"><p id="1bd9f96e-057f-8015-9df5-d31129ff140d" class=""><mark class="highlight-red_background"><strong>Copy and paste your Demonstration link to the Assignment submission page.</strong></mark></p></div></figure><p id="1bd9f96e-057f-8033-98b7-f892e8aef49f" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
