@@ -1,0 +1,695 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A4: Word prediction</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.highlight-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.highlight-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 111, 200, 0.09);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.block-color-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.block-color-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1d69f96e-057f-8060-b720-fbb395ff0950" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><h1 class="page-title">A4: Word prediction</h1><p class="page-description"></p></header><div class="page-body"><nav id="1d89f96e-057f-80af-be33-df4015d5b442" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1d89f96e-057f-8029-9d86-e6c9858c89d0">Task</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1d89f96e-057f-809b-98e5-e5eb0312ce47">Materials</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1d89f96e-057f-8065-9c59-d2d4aa3a016c">Guideline and Submissions</a></div></nav><p id="1d89f96e-057f-800c-9ad1-e1adfa0f9f0d" class="">
+</p><hr id="1d89f96e-057f-805d-971b-e66f8c15b39e"/><figure class="block-color-red callout" style="white-space:pre-wrap;display:flex" id="1d99f96e-057f-80cf-b178-e15bbe08d62a"><div style="width:100%"><p id="1d99f96e-057f-80fe-8e2d-c79c61d95d78" class=""><strong>UPDATE [April 18]: You will need to obtain the standard probabilities only as your final output</strong>.<strong> If you encounter a word that does not exist in the vocabulary in the model, then assign a 0.</strong></p></div></figure><h1 id="1d89f96e-057f-8029-9d86-e6c9858c89d0" class="">Task</h1><p id="1d89f96e-057f-802d-8f53-d18c6161e42d" class="">There are three main tasks for this assignment.</p><figure class="block-color-orange_background callout" style="white-space:pre-wrap;display:flex" id="1d89f96e-057f-8085-8c0e-f9b6b9bd3a39"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/flag-swallowtail_gray.svg"/></div><div style="width:100%"><ol type="1" id="1d89f96e-057f-8006-8984-e7b75c7fb917" class="numbered-list" start="1"><li>Calculate the probability of the target word given context, using the FK1999 dataset and using the assigned language model (<strong>bert-base-uncased</strong>). For this task, you may either recycle the code we used in class or come up with your own code using HuggingFace.</li></ol><ol type="1" id="1d89f96e-057f-80e1-bc4b-d39ecc01a9dc" class="numbered-list" start="2"><li>Plot bar plots that demonstrate mean probabilities (with standard errors) based on the model outputs you obtained in Task 1. For this task, you must use the functions and commands used in the R Markdown file that was used for the class exercise.</li></ol><ol type="1" id="1d89f96e-057f-803f-9eb3-c395a83e7925" class="numbered-list" start="3"><li>Synthesize the model results with the reported findings in FK1999. What can be said about word prediction? More specifically, what can be said about the cognitive mechanisms that underlie lexical access in the human mind? What do the results tell us about the similarities or differences between humans and machines?</li></ol></div></figure><h1 id="1d89f96e-057f-809b-98e5-e5eb0312ce47" class="">Materials</h1><p id="1d89f96e-057f-80c8-82b7-ea33c9165a5c" class="">You will have one main dataset and two helper code to complete this assignment.</p><ul id="1d89f96e-057f-8064-838c-eae257bc5504" class="bulleted-list"><li style="list-style-type:disc"><code>fk1999-stimuli.csv</code> : This csv file contains experimental materials used in Federmeier &amp; Kutas (1999) Experiment 1. (Or check out Canvas if the file doesn’t open.)<figure id="1d69f96e-057f-8029-9451-d097fd79c1cf"><div class="source"><a href="A4%20Word%20prediction%20a4_files/fk1999-stimuli.csv">fk1999-stimuli.csv</a></div></figure></li></ul><ul id="1d89f96e-057f-8042-b131-cff14ff8d7b2" class="bulleted-list"><li style="list-style-type:disc"><code>word-surprisal.ipynb</code> : This contains the code getting word (log)probabilities of the target word given prior context. It uses the minicons library for getting access to the model and calculating probabilities a little easier. Feel free to recycle this code. <figure id="1d89f96e-057f-801e-bfff-ec37b2475ba9"><a href="https://colab.research.google.com/drive/12GeCjeVrdPUUPpQBZXwGqdkF1h14QxHE?usp=sharing" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Google Colab</div></div><div class="bookmark-href"><img src="https://ssl.gstatic.com/colaboratory-static/common/73c56aa57e34a745ba3920b56acf3b31/img/favicon.ico" class="icon bookmark-icon"/>https://colab.research.google.com/drive/12GeCjeVrdPUUPpQBZXwGqdkF1h14QxHE?usp=sharing</div></div><img src="https://colab.research.google.com/img/colab_favicon_256px.png" class="bookmark-image"/></a></figure><ul id="1d89f96e-057f-80a1-8070-c840362f43ae" class="bulleted-list"><li style="list-style-type:circle">Alternatively, you’re welcome to directly use the pipeline offered in huggingface instead of using the minicons library. See: <a href="https://huggingface.co/google-bert/bert-base-uncased">https://huggingface.co/google-bert/bert-base-uncased</a></li></ul></li></ul><ul id="1d89f96e-057f-807c-b0f9-ff673036a3a1" class="bulleted-list"><li style="list-style-type:disc"><code>bargraph-simplified.Rmd</code> : This R Markdown file contains basic functions useful for summarizing observed data and drawing bar plots (and histograms). It uses the <code>results-demo-LexicalDecisionTask.csv</code> dataset (a mock experimental result dataset from the lexical decision task we set up in Assignment 2) for analysis. Use the functions used in this file for your assignment.<figure id="1d89f96e-057f-805c-bae1-d756d3c546c1"><div class="source"><a href="A4%20Word%20prediction%20a4_files/bargraph-simplified.rmd">bargraph-simplified.Rmd</a></div></figure><p id="1d89f96e-057f-8010-aabd-c4e197aabe96" class="">
+</p></li></ul><p id="1d89f96e-057f-8054-9892-d0386de03e51" class="">
+</p><h1 id="1d89f96e-057f-8065-9c59-d2d4aa3a016c" class="">Guideline and Submissions</h1><p id="1d89f96e-057f-80b6-8b1c-d7e446906aa6" class="">There are two files you should submit.</p><ul id="1d89f96e-057f-8050-b8c4-eea7c48b569d" class="toggle"><li><details open=""><summary><strong><span style="border-bottom:0.05em solid">[1] Google Colab URL</span></strong></summary><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1d89f96e-057f-8080-980e-d9f12a9daacc"><div style="width:100%"><p id="1d89f96e-057f-80be-a6fb-e8a9c49b6cfc" class="">This code should:</p><ul id="1d89f96e-057f-80d9-bcb2-e585f35a7a1f" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Read a dataset.</span><div class="indented"></div></li></ul><ul id="1d89f96e-057f-809d-8005-ff72d2112ca2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Calculate the probabilities of the target word given prior context for all items.</span><div class="indented"></div></li></ul><ul id="1d89f96e-057f-80d2-a912-c8a29fd0c3a0" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Save the dataframe with the calculated measures.</span><div class="indented"></div></li></ul></div></figure><ul id="1d89f96e-057f-8002-a749-e9125e29e9b7" class="bulleted-list"><li style="list-style-type:disc">The code should read in the <code>fk1999-stimuli.csv</code> (which looks like below):<figure id="1d89f96e-057f-808f-bdff-ccbd346d4285" class="image"><a href="A4%20Word%20prediction%20a4_files/image.png"><img style="width:681.9921875px" src="A4%20Word%20prediction%20a4_files/image.png"/></a></figure></li></ul><ul id="1d89f96e-057f-8081-b03d-d3e5a60ed56a" class="bulleted-list"><li style="list-style-type:disc">Then calculate the <mark class="highlight-red"><strong>probability</strong></mark> measure of seeing the target words given prior context. Feel free to reuse the code we used in class for this.<ol type="1" id="1d99f96e-057f-80d9-afc7-cbf6eae93524" class="numbered-list" start="1"><li>Check if the target word exists in the vocabulary. If it doesn&#x27;t, <strong>assign the probability as 0 -- no conversion from log prob to prob required</strong>.</li></ol><ol type="1" id="1d99f96e-057f-80e0-b7e3-f3777c11694e" class="numbered-list" start="2"><li>If the word exists, <strong>get its log probability and convert it to a standard probability score</strong>. </li></ol><ul id="1d89f96e-057f-80c7-aac4-c314dc0eb0d0" class="bulleted-list"><li style="list-style-type:circle">Tip: Instead of using the given dataframe, it might be easier if you convert it into a long form that looks like below. If you want to convert the shape of the data structure, check out the <strong>melt</strong> function in <strong>pandas </strong>library (<a href="https://pandas.pydata.org/docs/reference/api/pandas.melt.html">https://pandas.pydata.org/docs/reference/api/pandas.melt.html</a>). </li></ul><figure id="1d89f96e-057f-806d-b84a-d3a32bbe2607" class="image"><a href="A4%20Word%20prediction%20a4_files/image%201.png"><img style="width:681.984375px" src="A4%20Word%20prediction%20a4_files/image%201.png"/></a></figure></li></ul><p id="1d89f96e-057f-8070-8a9d-d84dae7d365b" class="">
+</p><ul id="1d89f96e-057f-8038-ae8b-c95bab77b0e3" class="bulleted-list"><li style="list-style-type:disc">There are three conditions for each item: expected, within_category, and between_category. Prior context is under the prefix<strong> </strong>column.<mark class="highlight-default"> So make sure that </mark><mark class="highlight-red"><strong>for each item, you should obtain three values in total (= 3 target words * probability).</strong></mark></li></ul><ul id="1d89f96e-057f-80d4-8fd1-f861d4dbe977" class="bulleted-list"><li style="list-style-type:disc">Finally, the code should <strong>save the new dataframe into a .csv file.</strong></li></ul><ul id="1d89f96e-057f-8045-93d7-f454334872d9" class="bulleted-list"><li style="list-style-type:disc">The code should be <strong>self contained</strong> completing the tasks and should run from beginning to end <strong>without any errors</strong>.</li></ul><p id="1d89f96e-057f-80aa-b5e8-da110b86697b" class="">
+</p></details></li></ul><ul id="1d89f96e-057f-8062-8060-caf836d21382" class="toggle"><li><details open=""><summary><strong><span style="border-bottom:0.05em solid">[2] PDF File compiled by using R Markdown</span></strong></summary><ul id="1d89f96e-057f-801f-9828-eac9d78e154b" class="bulleted-list"><li style="list-style-type:disc"><mark class="highlight-red">The </mark><mark class="highlight-red"><strong>output</strong></mark><mark class="highlight-red"> and </mark><mark class="highlight-red"><strong>functions</strong></mark><mark class="highlight-red"> and </mark><mark class="highlight-red"><strong>your synthesis</strong></mark><mark class="highlight-red"> should all be printed out in your compiled PDF file!</mark> (If you use the regular ```{r}``` chunk without any options, everything will show up by default.)</li></ul><ul id="1d99f96e-057f-8080-9cf2-d03f5beeabb2" class="bulleted-list"><li style="list-style-type:disc">Feel free to recycle the R Markdown (.Rmd) we used in class.</li></ul><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1d89f96e-057f-8012-9c0a-ee1abb333908"><div style="width:100%"><p id="1d89f96e-057f-8084-b75a-e39306b6450a" class="">The R Markdown should contain functions and outputs that …</p><ul id="1d89f96e-057f-80b7-b954-e505895cbef9" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Read the dataframe that contains the probability measure produced after Step 1.</span><div class="indented"></div></li></ul><ul id="1d89f96e-057f-8035-ac48-d163881d6d92" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use <em><strong>distinct</strong></em><em> </em>and <em><strong>nrow</strong></em><em> </em>to check if you have 3 unique values for each item. (”unique” doesn’t mean the values should have different values.)</span><div class="indented"></div></li></ul><ul id="1d89f96e-057f-80ab-bef7-d0fca4f83db2" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use <em><strong>mutate</strong></em><em> </em>and<em> </em><em><strong>case_when</strong></em><em> </em>to create a new column that distinguishes whether the condition is expected or unexpected. So the ‘unexpected_between’ and ‘unexpected_within’ conditions should be assigned the same value in this new column.</span><div class="indented"></div></li></ul><ul id="1d89f96e-057f-806f-b545-ec0916b8f94a" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use <em><strong>filter</strong></em><em> </em>(and other relevant functions) to examine the number of items that contain target words whose probability is 0.</span><div class="indented"></div></li></ul><ul id="1d89f96e-057f-8087-a061-e1f87ba23d81" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use<strong> </strong><em><strong>summarise,</strong></em> <em><strong>group_by, select</strong></em><strong> </strong>and<em> </em><em><strong>ggplot </strong></em>to plot <strong>two separate bar graphs</strong>. (These function don’t have to be used in the same chunk, but as long as they are used at a certain point in your script, that’s fine.)</span><div class="indented"><p id="1d89f96e-057f-80b5-b81c-dfce7665f2b2" class="">All bar graphs should commonly have an X-axis label, Y-axis label, a title, no legend, a choice of your color scheme, and a choice of your theme. </p><p id="1d89f96e-057f-8036-8637-e6f53e976ed2" class="">See <a href="https://r-graph-gallery.com/">https://r-graph-gallery.com</a> for so many different example plots!<br/>See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">https://ggplot2.tidyverse.org/reference/ggtheme.html</a> for other themes.</p><p id="1d89f96e-057f-8038-8aea-cac23c7e9699" class="">Each bar graph should show the mean (with error bars showing the standard errors of mean, with 95% Confidence Interval) as the y-value, and the x-axis should show different conditions.</p><ul id="1d89f96e-057f-80b2-9b6d-cb590e99116d" class="bulleted-list"><li style="list-style-type:disc">Bar graph 1: x-axis based on <strong>three conditions</strong> (expected, unexpected_between, unexpected_within); y-axis based on mean <strong>probabilities</strong>.</li></ul><ul id="1d89f96e-057f-8010-a8ce-ff37001d58b8" class="bulleted-list"><li style="list-style-type:disc">Bar graph 2: x-axis based on <strong>two conditions</strong> (expected, unexpected); y-axis based on mean <strong>probabilities</strong>.</li></ul><p id="1d89f96e-057f-8077-bf58-d9263c6c93aa" class=""><mark class="highlight-red"><strong>Make sure you have the correct x-axis and y-axis labels and the right titles for all four plots!</strong></mark></p></div></li></ul><ul id="1d89f96e-057f-8073-90aa-f3c5d735d60c" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Synthesizes the model results. Compare the findings in Federmeier and Kutas (1999). What can be said about word prediction? More specifically, what can be said about the cognitive mechanisms that underlie lexical access in the human mind? What do the results tell us about the similarities or differences between humans and machines?</span><div class="indented"></div></li></ul></div></figure></details></li></ul><p id="1d89f96e-057f-8073-86ac-cb610c869143" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

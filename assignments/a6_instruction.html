@@ -1,0 +1,698 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A6: Reading time and surprisal</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.highlight-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.highlight-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 111, 200, 0.09);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.block-color-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.block-color-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1e69f96e-057f-80c7-a000-fe20649dd5cc" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><h1 class="page-title">A6: Reading time and surprisal</h1><p class="page-description"></p></header><div class="page-body"><nav id="1ea9f96e-057f-80d6-bd56-db6ddbb84d3d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1ea9f96e-057f-8028-bebe-c8063378b402">Overview</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1ea9f96e-057f-80f1-89ab-e5dc92ce9ee7">Tasks</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1ea9f96e-057f-8088-85c4-e50139cdda7e">Human reading time data</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1ea9f96e-057f-801f-8d6e-dabee6393938">Data</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1ea9f96e-057f-8037-804c-ed6ab3b79c3c">Task</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1ea9f96e-057f-8064-a972-c8705d462656">Surprisal</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1ea9f96e-057f-80cc-994c-f34c4da87760">Data</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1ea9f96e-057f-8005-b8ad-c63cc28ab271">Task</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1ea9f96e-057f-8029-89d4-ce1363177e12">Synthesis</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1ea9f96e-057f-80de-b158-c462baf5c627">Submission</a></div></nav><p id="1ea9f96e-057f-80f4-9734-c8afa7e7302c" class="">
+</p><hr id="1ea9f96e-057f-80c6-9341-e65931c5ef23"/><p id="1f49f96e-057f-80ec-b559-c70d04e525fa" class="block-color-orange_background"><strong>UPDATE (May 15): In the preprocessed you’ll use, the words are presented in word-by-word (without any phrases). So the words should look like “The” / “waitress” / … (NOT “The waitress”). This should be reflected on your line graph (x-axis tick labels) as well as identifying the critical region. The critical region will be word number 9; spillover regions being regions 10 and 11.</strong></p><h1 id="1ea9f96e-057f-8028-bebe-c8063378b402" class="">Overview</h1><p id="1ea9f96e-057f-8043-beca-d28065dc3915" class="">
+</p><p id="1ea9f96e-057f-80d1-931a-c300a4e51bda" class="">We discussed that a standard number agreement attraction effect is identified by two reading time (RT) pattern: </p><ol type="1" id="1ea9f96e-057f-8026-9b05-d573cb7792c2" class="numbered-list" start="1"><li>Longer RTs with ungrammatical conditions than grammatical conditions: <strong>c &amp; d &gt; a &amp; b</strong></li></ol><ol type="1" id="1ea9f96e-057f-8096-b94a-e00c43886531" class="numbered-list" start="2"><li>Within the ungrammatical condition (’were’), longer RTs with a singular distractor noun (’girl’) than a plural distractor (’girls’): <strong>d &gt; c</strong></li></ol><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="1ea9f96e-057f-80a2-9d64-d5266478b16f"><div style="width:100%"><ol type="a" id="1ea9f96e-057f-809b-b6bd-c79f8bc7b3d5" class="numbered-list" start="1"><li><mark class="highlight-purple">Plural</mark> - <mark class="highlight-teal">Grammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girls</mark> unsurprisingly <mark class="highlight-teal">was</mark> unhappy about all the noise.</li></ol><ol type="a" id="1ea9f96e-057f-8030-b00b-f0724b76e8be" class="numbered-list" start="2"><li><mark class="highlight-purple">Singular</mark> - <mark class="highlight-teal">Grammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girl</mark> unsurprisingly <mark class="highlight-teal">was</mark> unhappy about all the noise.</li></ol><ol type="a" id="1ea9f96e-057f-8006-abd0-cac595524511" class="numbered-list" start="3"><li><mark class="highlight-purple">Plural</mark> - <mark class="highlight-teal">Ungrammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girls</mark> unsurprisingly <mark class="highlight-teal">were</mark> unhappy about all the noise.</li></ol><ol type="a" id="1ea9f96e-057f-8015-9b5c-de8a6069488c" class="numbered-list" start="4"><li><mark class="highlight-purple">Singular</mark> - <mark class="highlight-teal">Ungrammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girl</mark> unsurprisingly <mark class="highlight-teal">were</mark> unhappy about all the noise.</li></ol></div></figure><p id="1ea9f96e-057f-80b1-abd9-ec98706caae3" class="">
+</p><p id="1ea9f96e-057f-80d1-9590-fb6b0e239529" class="">In this assignment, <mark class="highlight-pink"><strong>you will examine whether the two key patterns appear in (1) the human data we collected in class, and (2) the surprisal values using a GPT-2 model.</strong></mark></p><figure class="block-color-red_background callout" style="white-space:pre-wrap;display:flex" id="1e69f96e-057f-80eb-a1d8-f29eb1502c75"><div style="width:100%"><h3 id="1ea9f96e-057f-80f1-89ab-e5dc92ce9ee7" class="">Tasks</h3><ol type="1" id="1eb9f96e-057f-80fc-8ab2-ef95bf9e8876" class="numbered-list" start="1"><li><strong>Plot line graphs</strong> of the <strong>mean reading times</strong> (with <strong>standard error bars</strong>) using the <strong>human reading time data collected in class</strong>.<p id="1eb9f96e-057f-8085-a089-c70edd3e4b0c" class="">→ Use the file: <code>combined_results_preprocessed.csv</code>.</p></li></ol><ol type="1" id="1eb9f96e-057f-8066-9582-d4717bcf6bc0" class="numbered-list" start="2"><li><strong>Calculate surprisal values using GPT-2</strong> for the <strong>critical region</strong> (<em>&quot;was&quot;/&quot;were&quot;</em>) in your stimuli.<p id="1eb9f96e-057f-8096-ba10-f8b2eac92b80" class="">→ You may use either <code>Parker_An-2018-material-exp1-PP.csv</code> or your dataset you used for A5.</p></li></ol><ol type="1" id="1eb9f96e-057f-8003-924b-f92fe1c71e1a" class="numbered-list" start="3"><li><strong>Plot a bar graph</strong> of the <strong>mean surprisal values</strong> (with <strong>standard error bars</strong>) across the <strong>four conditions</strong>, based on the surprisal values calculated in Task 2.</li></ol><ol type="1" id="1eb9f96e-057f-80aa-8c79-c894c28dbed6" class="numbered-list" start="4"><li><strong>Write a brief summary and key takeaways</strong>, comparing the human reading time data and the GPT-2 surprisal results.</li></ol><p id="1eb9f96e-057f-8026-8035-d11ff81af002" class="">
+</p><ul id="1eb9f96e-057f-8065-bbbd-e62306695aca" class="bulleted-list"><li style="list-style-type:disc"><strong>Tasks 1, 3, and 4</strong> should be completed in <strong>R Markdown</strong>; <strong>Task 2</strong> should be done in <strong>Python</strong>.</li></ul><ul id="1eb9f96e-057f-808a-8774-dc14e00bf5c2" class="bulleted-list"><li style="list-style-type:disc">Your <strong>final submission should be a compiled PDF using the R Markdown file</strong>, including the outputs for Tasks 1, 3, and 4.<br/><strong>You do NOT need to submit your Python code.</strong></li></ul></div></figure><h1 id="1ea9f96e-057f-8088-85c4-e50139cdda7e" class="">Human reading time data</h1><h2 id="1ea9f96e-057f-801f-8d6e-dabee6393938" class="">Data</h2><p id="1ea9f96e-057f-8058-b06e-c7f2358f1a04" class="">Below is the combined data that were collected by your classmates. I’ve preprocessed the data. Time and IP information of the participants are anonymized. </p><figure id="1ea9f96e-057f-80b0-a765-cc8ebea3e74a"><div class="block-color-gray_background source"><a href="A6%20Reading%20time%20and%20surprisal%20a6_files/combined_results_preprocessed.csv">combined_results_preprocessed.csv</a></div></figure><p id="1ea9f96e-057f-8029-b182-dea697e4496b" class="">
+</p><p id="1ea9f96e-057f-80c9-8969-c6b722dad9ab" class="">Check out the columns by <code>colnames(df)</code>. </p><ul id="1eb9f96e-057f-8043-a2a5-ee0b598827d1" class="bulleted-list"><li style="list-style-type:disc">The <strong>Subj</strong> column was created based on participants’ Time and IP information. So instead of using those two fields to identify subjects, you can simply use the <strong>Subj</strong> column.</li></ul><ul id="1eb9f96e-057f-805a-b793-f424f8f75179" class="bulleted-list"><li style="list-style-type:disc">The three types of subject information you collected have been renamed as <strong>verification_code</strong>, <strong>Age</strong>, and <strong>first_language</strong>. These column names might differ from what you used in your original experiment, so make sure to refer to the correct names.</li></ul><h2 id="1ea9f96e-057f-8037-804c-ed6ab3b79c3c" class="">Task</h2><p id="1ea9f96e-057f-8034-a611-d8514e73c026" class="">Everything below case be executed based on the functions we practiced in class! Feel free to recycle the code in <code>linegraph.Rmd</code> .</p><figure id="1ea9f96e-057f-80aa-b934-c597afd2ac2e"><div class="block-color-gray_background source"><a href="A6%20Reading%20time%20and%20surprisal%20a6_files/linegraph.rmd">linegraph</a></div></figure><p id="1ea9f96e-057f-8097-b102-d305e017c72a" class="">
+</p><ol type="1" id="1ea9f96e-057f-807d-b1d9-f327e8194ebe" class="numbered-list" start="1"><li><strong>Print the number of subjects</strong> in the dataset.</li></ol><ol type="1" id="1ea9f96e-057f-804e-b4e5-f0b818c6ecb2" class="numbered-list" start="2"><li><strong>Compute and report the age statistics</strong>:<ul id="1ea9f96e-057f-80c3-8859-c643fe9234bf" class="bulleted-list"><li style="list-style-type:disc">Minimum, maximum, and mean age of the subjects.</li></ul></li></ol><ol type="1" id="1ea9f96e-057f-8052-92cc-fa1b081b96b3" class="numbered-list" start="3"><li><strong>Print the number of critical trials</strong> each subject completed.</li></ol><ol type="1" id="1ea9f96e-057f-8064-83b0-cc2418ea1d03" class="numbered-list" start="4"><li><strong>Print the names of the four experimental conditions</strong> used in the critical trials.</li></ol><ol type="1" id="1ea9f96e-057f-8039-8211-d898659d1692" class="numbered-list" start="5"><li><strong>Plot the mean reading times across word regions</strong>, following these guidelines:<ul id="1ea9f96e-057f-8011-affc-ceab73026442" class="bulleted-list"><li style="list-style-type:disc">Use <strong>line type and color</strong> (and optionally, points) to differentiate the four conditions.<p id="1ea9f96e-057f-8069-abd4-c55a5e1beddd" class="">(Note: The 2×2 design means two pairs of conditions should be visually grouped.)</p></li></ul><ul id="1ea9f96e-057f-80a5-aaea-cca37c10d0d6" class="bulleted-list"><li style="list-style-type:disc"><strong>Do not use facet grids</strong>.</li></ul><ul id="1ea9f96e-057f-8026-9728-e202073a010e" class="bulleted-list"><li style="list-style-type:disc">Label the x-axis with <strong>example word regions</strong> (e.g., <em>The waitress / who / sat / … / the noise</em>). Limit to <strong>11 regions</strong>, as we did in class.</li></ul><ul id="1ea9f96e-057f-8000-ab79-d123f07b8b25" class="bulleted-list"><li style="list-style-type:disc">Clearly <strong>label the x-axis, y-axis, and provide a title</strong> for the graph.</li></ul><ul id="1ea9f96e-057f-802a-8d10-edfddb1842ca" class="bulleted-list"><li style="list-style-type:disc">Mark on the plot<strong> word regions 7 (critical), 8 (spillover1), and 9 (spillover2)</strong> as relevant to the number agreement attraction effect.<p id="1ea9f96e-057f-8017-aada-d72dcf1d588f" class="">(Note: In class, we only analyzed regions 7 and 8; here, include region 9 as well.)</p></li></ul></li></ol><ol type="1" id="1ea9f96e-057f-80ac-a150-d1b9a1134876" class="numbered-list" start="6"><li><strong>Interpret the results</strong> based on the mean reading times.<p id="1ea9f96e-057f-8036-bea2-c6c1668110bb" class="">(Tip: To help interpretation, you may also include a second plot <strong>without error bars</strong>, since large standard errors can obscure the pattern in the data.)</p></li></ol><p id="1ea9f96e-057f-80b8-b0d7-fe59bf18503a" class="">
+</p><h1 id="1ea9f96e-057f-8064-a972-c8705d462656" class="">Surprisal</h1><h2 id="1ea9f96e-057f-80cc-994c-f34c4da87760" class="">Data</h2><p id="1ea9f96e-057f-80a2-a697-f7d8e7e05c1a" class="">The data for this task come from Parker &amp; An’s (2018) Experiment 1, specifically conditions (e)-(h). You download the materials below:</p><figure id="1ea9f96e-057f-80d0-a7be-e59055070ce7"><div class="block-color-gray_background source"><a href="A6%20Reading%20time%20and%20surprisal%20a6_files/Parker_An-2018-material-exp1-PP.csv">Parker_An-2018-material-exp1-PP.csv</a></div></figure><h2 id="1ea9f96e-057f-8005-b8ad-c63cc28ab271" class="">Task</h2><ol type="1" id="1ea9f96e-057f-804c-8c79-d065af359e52" class="numbered-list" start="1"><li><strong>Calculate surprisal values</strong> for the <strong>target word</strong> (e.g., <em>was/were</em>) given the <strong>preceding context</strong> (e.g., <em>the waitress who sat near the girl(s)</em>) for all 24 items * 4 conditions. Use the provided code in Google Colab. <p id="1ea9f96e-057f-80fb-b702-f5035b4dadf3" class="">(<em>If you’re reading this instruction before the first class of Week 7: We will go over the code below in class, so don’t worry even if you don’t understand anything.)</em></p><figure id="1ea9f96e-057f-807b-ba09-ecf4f5b55a66"><a href="https://colab.research.google.com/drive/1u-AHUUWfCIX4WyB6t23NY_SlRPFnhpjt?usp=sharing" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Google Colab</div></div><div class="bookmark-href"><img src="https://ssl.gstatic.com/colaboratory-static/common/d95fe7a47bbd4491f98bbaea2a102988/img/favicon.ico" class="icon bookmark-icon"/>https://colab.research.google.com/drive/1u-AHUUWfCIX4WyB6t23NY_SlRPFnhpjt?usp=sharing</div></div><img src="https://colab.research.google.com/img/colab_favicon_256px.png" class="bookmark-image"/></a></figure></li></ol><ol type="1" id="1ea9f96e-057f-80d1-8044-eda4289aaee7" class="numbered-list" start="2"><li><strong>Plot a box plot</strong> showing the <strong>mean surprisal</strong> values (with <strong>error bars</strong>) across the <strong>four conditions</strong> at the critical region (”was/were”).<ul id="1ea9f96e-057f-80fa-bfb4-e81e0a9761dd" class="bulleted-list"><li style="list-style-type:disc">This task is similar to the plotting assignment we completed for the Federmeier &amp; Kutas (1999) replication study. Feel free to recycle the R Markdown file we used in class for plotting a bar graph, or the code you used for Assignment 4. Y can <strong>choose any aesthetics</strong> that best communicate the pattern in your data.<figure id="1ea9f96e-057f-8014-8dec-fdf9fdcbfb32"><div class="block-color-gray_background source"><a href="A6%20Reading%20time%20and%20surprisal%20a6_files/bargraph-simplified.rmd">bargraph-simplified</a></div></figure></li></ul></li></ol><ol type="1" id="1ea9f96e-057f-802a-8b31-ed5e0e6ee399" class="numbered-list" start="3"><li>Interpret the results. Do you see the expected number agreement attraction effect as you saw in the human reading time results?</li></ol><p id="1ea9f96e-057f-8095-bdbe-e3944261fded" class="">
+</p><h1 id="1ea9f96e-057f-8029-89d4-ce1363177e12" class="">Synthesis</h1><p id="1ea9f96e-057f-8040-968b-cd7467e5998c" class="">Given the findings in the <strong>human reading time data</strong> and the <strong>GPT-2 surprisal values</strong>, write a brief synthesis addressing the following:</p><ol type="1" id="1ea9f96e-057f-8088-8ec1-e51ab29eb3b8" class="numbered-list" start="1"><li><strong>Do both sources (human data and GPT-2 surprisal) show the two key patterns of number agreement attraction?</strong><ul id="1ea9f96e-057f-802b-a043-d368ac68a947" class="bulleted-list"><li style="list-style-type:disc"><strong>Pattern 1</strong>: Longer RTs/surprisal values in ungrammatical conditions than grammatical ones (<em>c &amp; d &gt; a &amp; b</em>).</li></ul><ul id="1ea9f96e-057f-806f-aec4-f636d3c8c7ae" class="bulleted-list"><li style="list-style-type:disc"><strong>Pattern 2</strong>: Within ungrammatical conditions, longer RTs/surprisal when the distractor is singular (<em>d &gt; c</em>).</li></ul></li></ol><ol type="1" id="1ea9f96e-057f-8096-a7a0-f854f9a56c0f" class="numbered-list" start="2"><li><strong>To what extent does GPT-2 replicate the human sensitivity to number agreement violations?</strong><ul id="1ea9f96e-057f-80c6-a21d-f7cb7be32bf8" class="bulleted-list"><li style="list-style-type:disc">If it differs, where does it diverge most clearly?</li></ul></li></ol><ol type="1" id="1ea9f96e-057f-80c7-afc8-dcd35fb7abd4" class="numbered-list" start="3"><li><strong>What might explain any mismatches between human reading behavior and GPT-2’s surprisal estimates?</strong><ul id="1ea9f96e-057f-802b-b1a1-c386c1a3d438" class="bulleted-list"><li style="list-style-type:disc">When interpreting your results, consider the nature of surprisal as a probabilistic metric and the limitations of GPT-2’s linguistic capabilities. You may refer to Arehalli &amp; Linzen (2020) (assigned reading) to support your analysis. Your synthesis should be 1-2 short paragraphs and reflect your interpretation and evidence from both human and language model output.</li></ul></li></ol><h1 id="1ea9f96e-057f-80de-b158-c462baf5c627" class="">Submission</h1><ul id="1ea9f96e-057f-8010-84c9-e28a42290b23" class="bulleted-list"><li style="list-style-type:disc"><strong>Write your report using an R Markdown file</strong>. The report should include the following:<ul id="1ea9f96e-057f-8053-86da-fe7169f34f75" class="bulleted-list"><li style="list-style-type:circle"><strong>Plots</strong>: All required plots (line graph(s), and a bar graph) should be included.</li></ul><ul id="1ea9f96e-057f-8064-847a-cc7a1b7092ce" class="bulleted-list"><li style="list-style-type:circle"><strong>Synthesis</strong>: A brief written synthesis comparing the human reading time data and GPT-2 surprisal results.</li></ul></li></ul><ul id="1ea9f96e-057f-804f-9ac1-dbb16949a01b" class="bulleted-list"><li style="list-style-type:disc"><strong>Compile your R Markdown file into a PDF</strong>. This will be your final submission document.</li></ul><p id="1eb9f96e-057f-8089-af4a-de8b881dbe4b" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

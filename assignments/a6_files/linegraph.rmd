@@ -1,0 +1,450 @@
+---
+title: "self-paced reading task (line graph)"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Clean up Environment
+```{r}
+rm(list = ls())
+```
+
+# Import libraries
+```{r}
+library(dplyr) # for using %>% and others
+library(tidyr) # for other data wrangling functions
+library(ggplot2) # plot
+```
+
+# Read preprocessed data
+This is preprocessed data that only contains trials with "correct" responses;
+Only data from participants whose accuracy is >= 80% are included;
+Only critical trials are included
+The data also includes 8 conditions with 48 items:
+  - distractor (singular vs. plural);
+  - grammaticality (grammatical vs. ungrammatical);
+  - clause (restrictive vs. appositive)
+  
+```{r}
+df <- read.csv('results_anonymized.csv')
+```
+
+```{r}
+colnames(df)
+```
+
+```{r number of subjects}
+length(unique(df$Subj))
+```
+
+```{r conditions}
+unique(df$Condition)
+```
+
+```{r creating new columns based on conditions}
+# need library(tidyr)
+df <- df %>%
+  separate(Condition, 
+           into = c("Clause", "Distractor", "Grammaticality"), 
+           sep = "\\.", # separate based on '.'
+           remove = FALSE) # do not remove the existing column
+```
+
+```{r check again}
+unique(df$Clause);
+unique(df$Distractor);
+unique(df$Grammaticality);
+```
+
+```{r see sentences for different conditions}
+cond_unique <- df$Condition
+
+df %>%
+  filter(ItemNo == 1) %>% # taking one item as an example
+  select(Condition, Sentence) %>% # selecting two specific columns
+  distinct() %>%
+  arrange(Condition) # sort data based on Condition (in ascending order)
+  # arrange(desc(Condition)) # sort data based on Condition (in descending order)
+```
+
+
+```{r items}
+unique(df$ItemNo)
+
+# checking if it includes all 48 items
+item_observed <- sort(unique(df$ItemNo))
+item_expected <- 1:48
+
+setdiff(item_expected, item_observed)
+```
+
+```{r number of items from each subject}
+# since we're using data that are already preprocessed (filtered based on accuracy)
+# it's expected that we don't see all 48 items per each subject
+df %>% group_by(Subj) %>%
+  summarise(n_item = n_distinct(ItemNo))
+```
+
+# Preliminary sketch
+
+```{r rearranging columns}
+df <- df %>%
+  select(
+    Subj, Age, Sex, ItemNo, Condition,
+    Sentence, Word, WordNo,
+    everything()
+  )
+```
+
+```{r only using restrictive conditions}
+restr <- df %>% filter(Clause == 'restr')
+```
+
+```{r base summary}
+summary(restr$RT)
+
+summary(restr[restr$WordNo %in% c(7, 8), ]$RT)
+```
+
+## Histogram
+```{r histogram}
+hist(restr[restr$WordNo %in% c(7, 8), ]$RT)
+```
+
+```{r histogram by condition}
+ggplot(restr %>% filter(WordNo %in% c(7, 8)), aes(x = RT)) +
+  geom_histogram(binwidth = 25, color = "black") +
+  facet_wrap(~ Condition) +
+  theme_bw() +
+  labs(title = "Reading Times in Critical Regions by Condition",
+       x = "Reading Times (ms)",
+       y = "Count")
+```
+
+
+# Linegraph
+
+See https://r-graph-gallery.com for so many different example plots!
+See https://ggplot2.tidyverse.org/reference/ggtheme.html for other themes
+
+## Plot 1: Basic plotting
+
+```{r calculating mean and se of reading times by word region and condition}
+summary_df <- restr %>%
+  group_by(WordNo, Condition) %>%
+  summarise(
+    mean_RT = mean(RT, na.rm = TRUE), # ignoring NA values
+    se_RT = sd(RT, na.rm = TRUE) / sqrt(n()) #,
+    #.groups = "drop"  # removes grouping after summarizing
+  )
+```
+
+```{r}
+p <- ggplot(summary_df, aes(x = WordNo, y = mean_RT, colour = Condition)) +
+  
+  geom_line() +  # add lines for each condition
+  geom_point() +  # add points for each WordNo
+  
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT, 
+                    ymax = mean_RT + 1.96 * se_RT), 
+                width = 0.2) + # width of the error bars
+  
+  scale_x_continuous(breaks = seq(1, max(summary_df$WordNo), by = 1))
+
+p
+```
+
+## Plot 2: Split by Conditions
+
+```{r calculating mean and se of reading times by word region and distractor and grammaticality}
+summary_df <- restr %>%
+  group_by(WordNo, Distractor, Grammaticality) %>%
+  summarise(
+    mean_RT = mean(RT, na.rm = TRUE), # ignoring NA values
+    se_RT = sd(RT, na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"  # removes grouping after summarizing
+  )
+```
+
+```{r base graph}
+p <- ggplot(summary_df, aes(x = WordNo, y = mean_RT, 
+                            colour = Grammaticality, linetype = Distractor)) +
+  
+  geom_line() +  # add lines for each condition
+  geom_point() +  # add points for each WordNo
+  
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT, 
+                      ymax = mean_RT + 1.96 * se_RT), 
+                  width = 0.2) +  # width of the error bars
+  
+  scale_x_continuous(breaks = seq(1, max(summary_df$WordNo), by = 1))
+
+p
+```
+**TODO** Continue from here
+
+```{r changing error bars}
+p <- ggplot(summary_df, aes(x = WordNo, y = mean_RT, 
+                            colour = Grammaticality
+                            # , linetype = Distractor # not applying it to error bars
+                            )) +
+  
+  # geom_line() +  # add lines for each condition
+  geom_line(aes(linetype = Distractor)) + # only for regular lines
+  
+  geom_point() +  # add points for each WordNo
+  
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT, 
+                      ymax = mean_RT + 1.96 * se_RT), 
+                  width = 0.2) +  # width of the error bars
+  
+  scale_x_continuous(breaks = seq(1, max(summary_df$WordNo), by = 1))
+
+p
+```
+
+```{r more labels}
+word_labels <- c("The waitress","who","sat","near","the girl(s)",
+                 "unsurprisingly","was/were","unhappy","about","the","noise") 
+
+p <- ggplot(summary_df %>% filter(WordNo <= length(word_labels)),
+            aes(x = WordNo, y = mean_RT, colour = Grammaticality)) +
+  
+  geom_line(aes(linetype = Distractor)) + # only for regular lines
+  geom_point() +  # add points for each WordNo
+  
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT, 
+                      ymax = mean_RT + 1.96 * se_RT), 
+                  width = 0.2) +  # width of the error bars
+  
+  # scale_x_continuous(breaks = seq(1, max(summary_df$WordNo), by = 1)) +
+  scale_x_continuous(breaks = 1:length(word_labels),
+                     labels = word_labels) +
+  
+  labs(
+    x = "Word Region",
+    y = "Mean Reading Times",
+    title = "Reading Times (Self-paced Reading Task)",
+    colour = "Grammaticality",
+    linetype = "Distractor"
+  ) +
+  
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p
+```
+
+```{r changing points}
+word_labels <- c("The waitress","who","sat","near","the girl(s)",
+                 "unsurprisingly","was/were","unhappy","about","the","noise") 
+
+p <- ggplot(summary_df %>% filter(WordNo <= length(word_labels)),
+            aes(x = WordNo, y = mean_RT, colour = Grammaticality)) +
+  
+  geom_line(aes(linetype = Distractor)) + 
+  geom_point(aes(shape = Grammaticality)) + # shape based on Grammaticality
+  
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT, 
+                      ymax = mean_RT + 1.96 * se_RT), 
+                  width = 0.2) +  # width of the error bars
+  
+  scale_x_continuous(breaks = 1:length(word_labels),
+                     labels = word_labels) +
+  
+  labs(
+    x = "Word Region",
+    y = "Mean Reading Times",
+    title = "Reading Times (Self-paced Reading Task)",
+    colour = "Grammaticality",
+    linetype = "Distractor"
+  ) +
+  
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+p
+```
+
+### Bonus: Parker & An (2018)
+```{r similar to Parker & An (2018)}
+word_labels <- c("The waitress","who","sat","near","the girl(s)",
+                 "unsurprisingly","was/were","unhappy","about","the","noise") 
+
+p <- ggplot(summary_df %>% filter(WordNo <= length(word_labels)), 
+            
+            aes(x = WordNo, y = mean_RT,
+                group = interaction(Grammaticality, Distractor))) +
+
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT,
+                    ymax = mean_RT + 1.96 * se_RT),
+                width = 0.2,
+                colour = "black") +
+
+  geom_line(aes(linetype = Grammaticality),
+            colour = "black", size = 0.4) +
+
+  geom_point(aes(shape = Distractor),
+             colour = "black", size = 2) +
+
+  # map exactly "gram" and "ungram" (NOTE: these must be the names in your Grammaticality column)
+  scale_linetype_manual(name = "Grammaticality", 
+                        values = c(gram = "solid", ungram = "dotted")) +
+  
+  # map exactly "plural" and "singular" (NOTE: these must be the names used in your Distractor column)
+  # see https://ggplot2.tidyverse.org/reference/scale_shape.html for shape options
+  scale_shape_manual(name = "Distractor", 
+                     values = c(plural = 15,  # filled square
+                                singular = 0    # hollow square
+                                )) +
+
+  scale_x_continuous(breaks = 1:length(word_labels),
+                     labels = word_labels) +
+  
+  labs(
+    x = "Word Region",
+    y = "Mean Reading Time (ms)",
+    title = "Reading Times (Self-paced Reading Task)"
+  ) +
+  
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "bottom")
+
+p
+```
+
+```{r similar to Parker & An (2018)}
+vlines <- c(pre_crit = 6.5,
+            post_spill  = 8.5)
+
+word_labels <- c("The waitress","who","sat","near","the girl(s)",
+                 "unsurprisingly","was/were","unhappy","about","the","noise") 
+
+p <- ggplot(summary_df %>% filter(WordNo <= length(word_labels)),
+            
+            aes(x = WordNo, y = mean_RT,
+                group = interaction(Grammaticality, Distractor))) +
+
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT,
+                    ymax = mean_RT + 1.96 * se_RT),
+                width = 0.2,
+                colour = "black") +
+
+  geom_line(aes(linetype = Grammaticality),
+            colour = "black", size = 0.4) +
+
+  geom_point(aes(shape = Distractor),
+             colour = "black", size = 2) +
+
+  # map exactly "gram" and "ungram" (NOTE: these must be the names in your Grammaticality column)
+  scale_linetype_manual(name = "Grammaticality", 
+                        values = c(gram = "solid", ungram = "dotted")) +
+  
+  # map exactly "plural" and "singular" (NOTE: these must be the names used in your Distractor column)
+  # see https://ggplot2.tidyverse.org/reference/scale_shape.html for shape options
+  scale_shape_manual(name = "Distractor", 
+                     values = c(plural = 15,  # filled square
+                                singular = 0    # hollow square
+                                )) +
+
+  scale_x_continuous(breaks = 1:length(word_labels),
+                     labels = word_labels) +
+  
+  geom_vline(xintercept = vlines, linetype = "dotted") +
+  
+  annotate("text", 
+           x = mean(vlines), # midpoint of 6.5 and 8.5 = 7.5
+           y = max(summary_df[summary_df$WordNo <= length(word_labels), ]$mean_RT), 
+           label= "number agreement \n attraction effect",
+           size = 3) +
+  
+  labs(
+    x = "Word Region",
+    y = "Mean Reading Time (ms)",
+    title = "Reading Times (Self-paced Reading Task)"
+  ) +
+  
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30)) +
+  theme(legend.position = "bottom")
+
+p
+```
+
+
+## Plot 3: Facet grid
+```{r splitting grammaticality by facet}
+word_labels <- c("The waitress","who","sat","near","the girl(s)",
+                 "unsurprisingly","was/were","unhappy","about","the","noise") 
+
+p <- ggplot(summary_df %>% filter(WordNo <= length(word_labels)),
+            aes(x = WordNo, y = mean_RT)) +
+  geom_line(aes(linetype = Distractor)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT,
+                    ymax = mean_RT + 1.96 * se_RT), 
+                width = 0.2) +
+  scale_x_continuous(breaks = 1:length(word_labels),
+                     labels = word_labels) +
+  labs(
+    x = "Word Region",
+    y = "Mean Reading Time (ms)",
+    title = "Reading Times (Self-paced Reading Task)",
+    colour = "Grammaticality",
+    linetype = "Distractor",
+    shape = "Grammaticality"
+  ) +
+  
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45), legend.position = "bottom") +
+  
+  facet_grid(. ~ Grammaticality)
+
+print(p)
+```
+
+```{r}
+gram_labels <- c("The waitress", "who", "sat", "near", "the girl(s)",
+                 "unsurprisingly", "was", "unhappy", "about", "the", "noise")
+ungram_labels <- c("The waitress", "who", "sat", "near", "the girl(s)",
+                   "unsurprisingly", "were", "unhappy", "about", "the", "noise")
+
+# add labels to the dataframe
+summary_df <- summary_df %>%
+  filter(WordNo <= length(gram_labels)) %>%
+  mutate(
+    WordLabel = case_when(
+      Grammaticality == "gram"   ~ gram_labels[WordNo],
+      Grammaticality == "ungram" ~ ungram_labels[WordNo]
+    ),
+    WordLabel = factor(WordLabel, levels = unique(WordLabel))  # allow label difference
+  )
+
+p <- ggplot(summary_df, aes(x = WordLabel, y = mean_RT)) +
+  geom_line(aes(linetype = Distractor, group = Distractor)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = mean_RT - 1.96 * se_RT,
+                    ymax = mean_RT + 1.96 * se_RT),
+                width = 0.2) +
+  labs(
+    x = "Word Region",
+    y = "Mean Reading Time (ms)",
+    title = "Reading Times (Self-paced Reading Task)",
+    colour = "Grammaticality",
+    linetype = "Distractor",
+    shape = "Grammaticality"
+  ) +
+  theme_light() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "bottom") +
+  facet_grid(. ~ Grammaticality,
+             labeller = labeller(
+               Grammaticality = c(gram = "Grammatical", ungram = "Ungrammatical")
+             ),
+             scales = "free_x")  # allow different x labels
+
+print(p)
+
+```

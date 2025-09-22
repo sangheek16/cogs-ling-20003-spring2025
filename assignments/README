@@ -1,3 +1,6 @@
 A1: Introduction (Python using Google Colab; R Markdown)
 A2: Lexical decision task (PCIbex)
 A3: Calculating semantic similarity and generating similar words (Gensim)
+A4: Word prediction (Federmeier & Kutas, 1999; minicons surprisal; R bargraph)
+A5: Self-paced reading task (Parer & An, 2018; PCIbex)
+A6: Reading time and surprisal (

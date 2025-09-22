@@ -1,0 +1,158 @@
+---
+title: "lexical decision task (bar graph)"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Clean up Environment
+```{r}
+rm(list = ls())
+```
+
+# Import libraries
+```{r setup, include=FALSE}
+# MAKE SURE TO INSTALL THESE FIRST!
+library(dplyr) # for using %>%
+library(ggplot2) # plot
+library(stringr)
+```
+
+# Analyzing data
+
+```{r read in csv data}
+df_main <- read.csv("results-demo_LexicalDecisionTask.csv")
+# df_main <- read.csv("results-demo.csv")
+View(df_main)
+```
+
+```{r basic summary}
+# summary(df_main)
+str(df_main)
+```
+
+```{r changing types of columns}
+df_main$subj_info1 <- as.character(df_main$subj_info1)
+str(df_main)
+```
+
+```{r get number of unique rows based on criteria}
+# Verion 1 
+# length(unique(df_main$subj_info1))
+
+# Version 2: If there are two unique identifiers for subjects
+df_main %>%
+  distinct(subj_info1, subj_info2) %>%
+  nrow()
+```
+
+```{r get number of occurrences based on criteria}
+df_main %>%
+  count(subj_info1, subj_info2, condition)
+```
+
+# Accuracy
+```{r creating a new column under certain criteria}
+# creating a new column
+df_main$correct <- NA # simple way
+
+# logic of creating a new column with embedded conditions
+# correct (1) if `response' is 'no' in `condition' == filler conditions
+# correct (1) if `response' is 'yes' in `condition' == critical conditions (else condition)
+
+df_main <- df_main %>%
+  mutate(correct = case_when(
+    condition == 'filler' & str_starts(response, 'F:') ~ 1,
+    condition == 'filler' ~ 0,
+    str_starts(condition, "critical_") & str_starts(response, 'J:') ~ 1,
+    str_starts(condition, "critical_") ~ 0,
+    TRUE ~ correct  # preserves existing values
+  ))
+```
+
+```{r average accuracy}
+aggregate(correct ~ subj_info1 + subj_info2, data=df_main, FUN=mean)
+```
+
+```{r filter rows based on criteria}
+# only data from participants with accuracy of 0.8 or higher will be analyzed
+df_analysis <- df_main %>%
+  group_by(subj_info1, subj_info2) %>%
+  filter(mean(correct, na.rm = TRUE) >= 0.8) %>% # removing NA before applying any operations
+  ungroup() # optional here; but necessary when additional operations will be done
+```
+
+```{r}
+# check the number of subjects that will be used for the main analysis
+df_analysis %>% 
+  distinct(subj_info1, subj_info2) %>%
+  nrow()
+```
+
+# Summary of results
+```{r a first look of the descriptive statistics}
+summary(df_analysis$reaction_time)
+```
+```{r}
+unique(df_analysis$condition)
+```
+
+```{r summary}
+summary_df <- df_analysis %>%
+  filter(condition != 'filler') %>%
+  group_by(condition) %>%
+  summarise(
+    mean = mean(reaction_time, na.rm = TRUE),
+    se = sd(reaction_time, na.rm = TRUE) / sqrt(n()),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    ci_low = mean - 1.96 * se,
+    ci_high = mean + 1.96 * se
+  )
+```
+
+```{r Reorder levels}
+summary_df <- summary_df %>%
+  mutate(condition = factor(condition, levels = c(
+    "critical_unr", "critical_sem", "critical_phn")
+    ))
+```
+
+# Plot
+See https://r-graph-gallery.com for so many different example plots!
+See https://ggplot2.tidyverse.org/reference/ggtheme.html for other themes
+
+## Bar plot
+
+```{r for setting y-axis limit for plotting}
+# Compute y-axis limits based on error bars
+y_min <- min(summary_df$ci_low, na.rm = TRUE)
+y_max <- max(summary_df$ci_high, na.rm = TRUE)
+```
+
+```{r plot}
+p <-
+  ggplot(summary_df, aes(x = condition, y = mean, fill = condition)) +
+  geom_bar(stat = "identity", width = 0.6) +
+  geom_errorbar(aes(ymin = ci_low, ymax = ci_high), width = 0.2) +
+    labs(
+      title = "Mean Reaction Time by Condition",
+      x = "Condition",
+      y = "Mean Reaction Times (ms)"
+    ) + scale_fill_viridis_d() +  # colorblind-friendly palette
+    theme_bw() +  # black and white background
+    theme(legend.position = "none") +
+    coord_cartesian(ylim = c(y_min, y_max)) # partial bars to show
+
+print(p)
+```
+
+```{r save }
+ggsave("barplot-lexical-decision-task.pdf", plot = p, width = 8, height = 6)
+```
+
+# Synthesis
+
+Write your synthesis here... and then Knit > Knit to PDF
+

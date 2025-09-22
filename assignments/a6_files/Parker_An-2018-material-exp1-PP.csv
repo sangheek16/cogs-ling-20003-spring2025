@@ -1,0 +1,97 @@
+﻿item_no,condition,,,,,,,,,,,,,,,,,,sentence
+1,e,The,waitress,who,sat,near,the,girls,unsurprisingly,was,unhappy,about,all,the,noise.,,,,The waitress who sat near the girls unsurprisingly was unhappy about all the noise.
+1,f,The,waitress,who,sat,near,the,girl,unsurprisingly,was,unhappy,about,all,the,noise.,,,,The waitress who sat near the girl unsurprisingly was unhappy about all the noise.
+1,g,The,waitress,who,sat,near,the,girls,unsurprisingly,were,unhappy,about,all,the,noise.,,,,The waitress who sat near the girls unsurprisingly were unhappy about all the noise.
+1,h,The,waitress,who,sat,near,the,girl,unsurprisingly,were,unhappy,about,all,the,noise.,,,,The waitress who sat near the girl unsurprisingly were unhappy about all the noise.
+2,e,The,dog,that,dug,in,the,holes,unfortunately,was,covered,in,mud,all,over.,,,,The dog that dug in the holes unfortunately was covered in mud all over.
+2,f,The,dog,that,dug,in,the,hole,unfortunately,was,covered,in,mud,all,over.,,,,The dog that dug in the hole unfortunately was covered in mud all over.
+2,g,The,dog,that,dug,in,the,holes,unfortunately,were,covered,in,mud,all,over.,,,,The dog that dug in the holes unfortunately were covered in mud all over.
+2,h,The,dog,that,dug,in,the,hole,unfortunately,were,covered,in,mud,all,over.,,,,The dog that dug in the hole unfortunately were covered in mud all over.
+3,e,The,boy,who,played,in,the,games,apparently,was,more,competitive,than,ever,before.,,,,The boy who played in the games apparently was more competitive than ever before.
+3,f,The,boy,who,played,in,the,game,apparently,was,more,competitive,than,ever,before.,,,,The boy who played in the game apparently was more competitive than ever before.
+3,g,The,boy,who,played,in,the,games,apparently,were,more,competitive,than,ever,before.,,,,The boy who played in the games apparently were more competitive than ever before.
+3,h,The,boy,who,played,in,the,game,apparently,were,more,competitive,than,ever,before.,,,,The boy who played in the game apparently were more competitive than ever before.
+4,e,The,mom,who,drove,with,the,kids,unsurprisingly,was,tired,of,all,the,bickering,in,the,car.,The mom who drove with the kids unsurprisingly was tired of all the bickering in the car.
+4,f,The,mom,who,drove,with,the,kid,unsurprisingly,was,tired,of,the,bickering,in,the,car.,,The mom who drove with the kid unsurprisingly was tired of the bickering in the car.
+4,g,The,mom,who,drove,with,the,kids,unsurprisingly,were,tired,of,all,the,bickering,in,the,car.,The mom who drove with the kids unsurprisingly were tired of all the bickering in the car.
+4,h,The,mom,who,drove,with,the,kid,unsurprisingly,were,tired,of,all,the,bickering,in,the,car.,The mom who drove with the kid unsurprisingly were tired of all the bickering in the car.
+5,e,The,kid,who,hid,behind,the,toys,definitely,was,in,a,lot,of,trouble.,,,,The kid who hid behind the toys definitely was in a lot of trouble.
+5,f,The,kid,who,hid,behind,the,toy,definitely,was,in,a,lot,of,trouble.,,,,The kid who hid behind the toy definitely was in a lot of trouble.
+5,g,The,kid,who,hid,behind,the,toys,definitely,were,in,a,lot,of,trouble.,,,,The kid who hid behind the toys definitely were in a lot of trouble.
+5,h,The,kid,who,hid,behind,the,toy,definitely,were,in,a,lot,of,trouble.,,,,The kid who hid behind the toy definitely were in a lot of trouble.
+6,e,The,policeman,who,patrolled,through,the,neighborhoods,evidently,was,mentioned,in,the,newspaper.,,,,,The policeman who patrolled through the neighborhoods evidently was mentioned in the newspaper.
+6,f,The,policeman,who,patrolled,through,the,neighborhood,evidently,was,mentioned,in,the,newspaper.,,,,,The policeman who patrolled through the neighborhood evidently was mentioned in the newspaper.
+6,g,The,policeman,who,patrolled,through,the,neighborhoods,evidently,were,mentioned,in,the,newspaper.,,,,,The policeman who patrolled through the neighborhoods evidently were mentioned in the newspaper.
+6,h,The,policeman,who,patrolled,through,the,neighborhood,evidently,were,mentioned,in,the,newspaper.,,,,,The policeman who patrolled through the neighborhood evidently were mentioned in the newspaper.
+7,e,The,goat,who,ate,from,the,cans,evidently,was,seen,on,the,side,of,the,road.,,The goat who ate from the cans evidently was seen on the side of the road.
+7,f,The,goat,who,ate,from,the,can,evidently,was,seen,on,the,side,of,the,road.,,The goat who ate from the can evidently was seen on the side of the road.
+7,g,The,goat,who,ate,from,the,cans,evidently,were,seen,on,the,side,of,the,road.,,The goat who ate from the cans evidently were seen on the side of the road.
+7,h,The,goat,who,ate,from,the,can,evidently,were,seen,on,the,side,of,the,road.,,The goat who ate from the can evidently were seen on the side of the road.
+8,e,The,scientist,who,prepared,for,the,experiments,suddenly,was,scared,about,all,the,consequences.,,,,The scientist who prepared for the experiments suddenly was scared about all the consequences.
+8,f,The,scientist,who,prepared,for,the,experiment,suddenly,was,scared,about,all,the,consequences.,,,,The scientist who prepared for the experiment suddenly was scared about all the consequences.
+8,g,The,scientist,who,prepared,for,the,experiments,suddenly,were,scared,about,all,the,consequences.,,,,The scientist who prepared for the experiments suddenly were scared about all the consequences.
+8,h,The,scientist,who,prepared,for,the,experiment,suddenly,were,scared,about,all,the,consequences.,,,,The scientist who prepared for the experiment suddenly were scared about all the consequences.
+9,e,The,student,who,wrote,to,the,professors,likely,was,concerned,about,her,low,grade.,,,,The student who wrote to the professors likely was concerned about her low grade.
+9,f,The,student,who,wrote,to,the,professor,likely,was,concerned,about,her,low,grade.,,,,The student who wrote to the professor likely was concerned about her low grade.
+9,g,The,student,who,wrote,to,the,professors,likely,were,concerned,about,her,low,grade.,,,,The student who wrote to the professors likely were concerned about her low grade.
+9,h,The,student,who,wrote,to,the,professor,likely,were,concerned,about,her,low,grade.,,,,The student who wrote to the professor likely were concerned about her low grade.
+10,e,The,journalist,who,read,about,the,reports,apparently,was,investigated,for,fraudulent,investigative,journalism.,,,,The journalist who read about the reports apparently was investigated for fraudulent investigative journalism.
+10,f,The,journalist,who,read,about,the,report,apparently,was,investigated,for,fraudulent,investigative,journalism.,,,,The journalist who read about the report apparently was investigated for fraudulent investigative journalism.
+10,g,The,journalist,who,read,about,the,reports,apparently,were,investigated,for,fraudulent,investigative,journalism.,,,,The journalist who read about the reports apparently were investigated for fraudulent investigative journalism.
+10,h,The,journalist,who,read,about,the,report,apparently,were,investigated,for,fraudulent,investigative,journalism.,,,,The journalist who read about the report apparently were investigated for fraudulent investigative journalism.
+11,e,The,boy,who,walked,toward,the,dogs,probably,was,scared,about,being,bitten.,,,,,The boy who walked toward the dogs probably was scared about being bitten.
+11,f,The,boy,who,walked,toward,the,dog,probably,was,scared,about,being,bitten.,,,,,The boy who walked toward the dog probably was scared about being bitten.
+11,g,The,boy,who,walked,toward,the,dogs,probably,were,scared,about,being,bitten.,,,,,The boy who walked toward the dogs probably were scared about being bitten.
+11,h,The,boy,who,walked,toward,the,dog,probably,were,scared,about,being,bitten.,,,,,The boy who walked toward the dog probably were scared about being bitten.
+12,e,The,woman,who,walked,by,the,dogs,clearly,was,happy,about,the,cross-country,road,trip.,,,The woman who walked by the dogs clearly was happy about the cross-country road trip.
+12,f,The,woman,who,walked,by,the,dog,clearly,was,happy,about,the,cross-country,road,trip.,,,The woman who walked by the dog clearly was happy about the cross-country road trip.
+12,g,The,woman,who,walked,by,the,dogs,clearly,were,happy,about,the,cross-country,road,trip.,,,The woman who walked by the dogs clearly were happy about the cross-country road trip.
+12,h,The,woman,who,walked,by,the,dog,clearly,were,happy,about,the,cross-country,road,trip.,,,The woman who walked by the dog clearly were happy about the cross-country road trip.
+13,e,The,nurse,who,called,for,the,doctors,unsurprisingly,was,excited,about,the,good,news.,,,,The nurse who called for the doctors unsurprisingly was excited about the good news.
+13,f,The,nurse,who,called,for,the,doctor,unsurprisingly,was,excited,about,the,good,news.,,,,The nurse who called for the doctor unsurprisingly was excited about the good news.
+13,g,The,nurse,who,called,for,the,doctors,unsurprisingly,were,excited,about,the,good,news.,,,,The nurse who called for the doctors unsurprisingly were excited about the good news.
+13,h,The,nurse,who,called,for,the,doctor,unsurprisingly,were,excited,about,the,good,news.,,,,The nurse who called for the doctor unsurprisingly were excited about the good news.
+14,e,The,director,who,called,for,the,assistants,suddenly,was,intrigued,by,the,secret,report.,,,,The director who called for the assistants suddenly was intrigued by the secret report.
+14,f,The,director,who,called,for,the,assistant,suddenly,was,intrigued,by,the,secret,report.,,,,The director who called for the assistant suddenly was intrigued by the secret report.
+14,g,The,director,who,called,for,the,assistants,suddenly,were,intrigued,by,the,secret,report.,,,,The director who called for the assistants suddenly were intrigued by the secret report.
+14,h,The,director,who,called,for,the,assistant,suddenly,were,intrigued,by,the,secret,report.,,,,The director who called for the assistant suddenly were intrigued by the secret report.
+15,e,The,artist,who,painted,by,the,houses,certainly,was,impressed,with,the,stunning,view.,,,,The artist who painted by the houses certainly was impressed with the stunning view.
+15,f,The,artist,who,painted,by,the,house,certainly,was,impressed,with,the,stunning,view.,,,,The artist who painted by the house certainly was impressed with the stunning view.
+15,g,The,artist,who,painted,by,the,houses,certainly,were,impressed,with,the,stunning,view.,,,,The artist who painted by the houses certainly were impressed with the stunning view.
+15,h,The,artist,who,painted,by,the,house,certainly,were,impressed,with,the,stunning,view.,,,,The artist who painted by the house certainly were impressed with the stunning view.
+16,e,The,director,who,called,for,the,actors,certainly,was,surprised,about,the,exciting,news.,,,,The director who called for the actors certainly was surprised about the exciting news.
+16,f,The,director,who,called,for,the,actor,certainly,was,surprised,about,the,exciting,news.,,,,The director who called for the actor certainly was surprised about the exciting news.
+16,g,The,director,who,called,for,the,actors,certainly,were,surprised,about,the,exciting,news.,,,,The director who called for the actors certainly were surprised about the exciting news.
+16,h,The,director,who,called,for,the,actor,certainly,were,surprised,about,the,exciting,news.,,,,The director who called for the actor certainly were surprised about the exciting news.
+17,e,The,thief,who,stole,from,the,stashes,obviously,was,scared,of,being,caught,red-handed.,,,,The thief who stole from the stashes obviously was scared of being caught red-handed.
+17,f,The,thief,who,stole,from,the,stash,obviously,was,scared,of,being,caught,red-handed.,,,,The thief who stole from the stash obviously was scared of being caught red-handed.
+17,g,The,thief,who,stole,from,the,stashes,obviously,were,scared,of,being,caught,red-handed.,,,,The thief who stole from the stashes obviously were scared of being caught red-handed.
+17,h,The,thief,who,stole,from,the,stash,obviously,were,scared,of,being,caught,red-handed.,,,,The thief who stole from the stash obviously were scared of being caught red-handed.
+18,e,The,author,who,read,about,the,books,apparently,was,disappointed,with,the,surprise,ending.,,,,The author who read about the books apparently was disappointed with the surprise ending.
+18,f,The,author,who,read,about,the,book,apparently,was,disappointed,with,the,surprise,ending.,,,,The author who read about the book apparently was disappointed with the surprise ending.
+18,g,The,author,who,read,about,the,books,apparently,were,disappointed,with,the,surprise,ending.,,,,The author who read about the books apparently were disappointed with the surprise ending.
+18,h,The,author,who,read,about,the,book,apparently,were,disappointed,with,the,surprise,ending.,,,,The author who read about the book apparently were disappointed with the surprise ending.
+19,e,The,solider,who,fought,against,the,terrorists,likely,was,surrounded,by,a,team,of,insurgents.,,,The solider who fought against the terrorists likely was surrounded by a team of insurgents.
+19,f,The,solider,who,fought,against,the,terrorist,likely,was,surrounded,by,a,team,of,insurgents.,,,The solider who fought against the terrorist likely was surrounded by a team of insurgents.
+19,g,The,solider,who,fought,against,the,terrorists,likely,were,surrounded,by,a,team,of,insurgents.,,,The solider who fought against the terrorists likely were surrounded by a team of insurgents.
+19,h,The,solider,who,fought,against,the,terrorist,likely,were,surrounded,by,a,team,of,insurgents.,,,The solider who fought against the terrorist likely were surrounded by a team of insurgents.
+20,e,The,millionaire,who,drove,past,the,cars,allegedly,was,pulled,over,for,drunk,driving.,,,,The millionaire who drove past the cars allegedly was pulled over for drunk driving.
+20,f,The,millionaire,who,drove,past,the,car,allegedly,was,pulled,over,for,drunk,driving.,,,,The millionaire who drove past the car allegedly was pulled over for drunk driving.
+20,g,The,millionaire,who,drove,past,the,cars,allegedly,were,pulled,over,for,drunk,driving.,,,,The millionaire who drove past the cars allegedly were pulled over for drunk driving.
+20,h,The,millionaire,who,drove,past,the,car,allegedly,were,pulled,over,for,drunk,driving.,,,,The millionaire who drove past the car allegedly were pulled over for drunk driving.
+21,e,The,librarian,who,read,about,the,books,certainly,was,surprised,by,the,abrupt,conclusion.,,,,The librarian who read about the books certainly was surprised by the abrupt conclusion.
+21,f,The,librarian,who,read,about,the,book,certainly,was,surprised,by,the,abrupt,conclusion.,,,,The librarian who read about the book certainly was surprised by the abrupt conclusion.
+21,g,The,librarian,who,read,about,the,books,certainly,were,surprised,by,the,abrupt,conclusion.,,,,The librarian who read about the books certainly were surprised by the abrupt conclusion.
+21,h,The,librarian,who,read,about,the,book,certainly,were,surprised,by,the,abrupt,conclusion.,,,,The librarian who read about the book certainly were surprised by the abrupt conclusion.
+22,e,The,chef,who,prepared,for,the,meals,evidently,was,unhappy,about,the,quality,of,the,ingredients.,,The chef who prepared for the meals evidently was unhappy about the quality of the ingredients.
+22,f,The,chef,who,prepared,for,the,meal,evidently,was,unhappy,about,the,quality,of,the,ingredients.,,The chef who prepared for the meal evidently was unhappy about the quality of the ingredients.
+22,g,The,chef,who,prepared,for,the,meals,evidently,were,unhappy,about,the,quality,of,the,ingredients.,,The chef who prepared for the meals evidently were unhappy about the quality of the ingredients.
+22,h,The,chef,who,prepared,for,the,meal,evidently,were,unhappy,about,the,quality,of,the,ingredients.,,The chef who prepared for the meal evidently were unhappy about the quality of the ingredients.
+23,e,The,gardener,who,pruned,around,the,hedges,financially,was,unable,to,buy,more,plants.,,,,The gardener who pruned around the hedges financially was unable to buy more plants.
+23,f,The,gardener,who,pruned,around,the,hedge,financially,was,unable,to,buy,more,plants.,,,,The gardener who pruned around the hedge financially was unable to buy more plants.
+23,g,The,gardener,who,pruned,around,the,hedges,financially,were,unable,to,buy,more,plants.,,,,The gardener who pruned around the hedges financially were unable to buy more plants.
+23,h,The,gardener,who,pruned,around,the,hedge,financially,were,unable,to,buy,more,plants.,,,,The gardener who pruned around the hedge financially were unable to buy more plants.
+24,e,The,athlete,who,kicked,near,the,referees,obviously,was,disappointed,about,the,bad,call.,,,,The athlete who kicked near the referees obviously was disappointed about the bad call.
+24,f,The,athlete,who,kicked,near,the,referee,obviously,was,disappointed,about,the,bad,call.,,,,The athlete who kicked near the referee obviously was disappointed about the bad call.
+24,g,The,athlete,who,kicked,near,the,referees,obviously,were,disappointed,about,the,bad,call.,,,,The athlete who kicked near the referees obviously were disappointed about the bad call.
+24,h,The,athlete,who,kicked,near,the,referee,obviously,were,disappointed,about,the,bad,call.,,,,The athlete who kicked near the referee obviously were disappointed about the bad call.

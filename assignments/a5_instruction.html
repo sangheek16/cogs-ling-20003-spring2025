@@ -1,0 +1,756 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>A5: Self-paced reading task</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.highlight-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.highlight-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 111, 200, 0.09);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(128, 125, 120, 1);
+	fill: rgba(128, 125, 120, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(204, 121, 47, 1);
+	fill: rgba(204, 121, 47, 1);
+}
+.block-color-yellow {
+	color: rgba(195, 148, 67, 1);
+	fill: rgba(195, 148, 67, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(63, 126, 190, 1);
+	fill: rgba(63, 126, 190, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(179, 84, 136, 1);
+	fill: rgba(179, 84, 136, 1);
+}
+.block-color-red {
+	color: rgba(201, 85, 73, 1);
+	fill: rgba(201, 85, 73, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(232, 242, 250, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 99, 174, 0.172); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1de9f96e-057f-803c-b766-e1eed6393fc4" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://www.notion.so/icons/drafts_gray.svg"/></div><h1 class="page-title">A5: Self-paced reading task</h1><p class="page-description"></p></header><div class="page-body"><p id="1de9f96e-057f-80d1-abd8-e86e223fcfc8" class="">
+</p><figure class="block-color-pink_background callout" style="white-space:pre-wrap;display:flex" id="1de9f96e-057f-8006-948d-e8f9a6e763ff"><div style="width:100%"><p id="1de9f96e-057f-80c8-9d2c-d8a01ad5ea76" class="">For this assignment, you will:</p><ol type="1" id="1de9f96e-057f-800a-b7ee-cf94bddf549f" class="numbered-list" start="1"><li>Replicate experimental materials</li></ol><ol type="1" id="1de9f96e-057f-809e-abf8-c298dc103b37" class="numbered-list" start="2"><li>Set up the experiment</li></ol><ol type="1" id="1de9f96e-057f-802f-9db8-fe44cdbe8349" class="numbered-list" start="3"><li>Publish the experiment and collect sample data</li></ol><p id="1de9f96e-057f-8081-88bf-f50c2da7efdc" class="">We use the “number agreement attraction effect” as a test case to work on these tasks. </p><p id="1df9f96e-057f-8005-aab6-e3b6872d8a15" class="">The experiment you will build should look like this (although not exactly the same): <a href="https://farm.pcibex.net/p/EhLeMH/">https://farm.pcibex.net/p/EhLeMH/</a></p></div></figure><p id="1de9f96e-057f-80e8-9af6-def5a92ded38" class="">
+</p><nav id="1de9f96e-057f-8012-9d9e-d1156dbe358d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1df9f96e-057f-800c-977a-e4e82136234b">Relevant materials</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1de9f96e-057f-800d-b67c-c3534461b656">Design</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1df9f96e-057f-80ae-8db0-d5d79f37560f">Experimental material</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1df9f96e-057f-80ca-8bfd-c7ffbef2afa0">Setting up the experiment</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1df9f96e-057f-80fb-a089-cd7fd2a9bbf1">Create a new project</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1df9f96e-057f-802d-8397-c350ecec8aa1">DashedSentence</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1df9f96e-057f-806a-b3f3-cc4ca38c4cb7">Publish experiment and collect sample data</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1df9f96e-057f-803a-b41c-ec12e2a1f49e">Submission</a></div></nav><p id="1de9f96e-057f-8083-9365-d21b886b5e33" class="">
+</p><hr id="1de9f96e-057f-8006-a2e1-e4518bdfdf69"/><h1 id="1df9f96e-057f-800c-977a-e4e82136234b" class="">Relevant materials</h1><p id="1df9f96e-057f-80a7-a5da-cbf068cfff4c" class="">For this assignment, you should download two files: 1) <code>Parker_An-2018-material.pdf</code>; 2) <code>demo-attraction-template.zip</code></p><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="1df9f96e-057f-8070-835b-c07134cb6e84"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/attachment_gray.svg"/></div><div style="width:100%"><figure id="1df9f96e-057f-80db-ba7e-ef9149887a5b"><div class="source"><a href="A5%20Self-paced%20reading%20task%20a5_files/Parker_An-2018-material.pdf">Parker_An-2018-material.pdf</a></div></figure><figure id="1df9f96e-057f-80be-aedb-f1dc47f36648"><div class="source"><a href="A5%20Self-paced%20reading%20task%20a5_files/demo-attraction-template.zip">demo-attraction-template.zip</a></div></figure></div></figure><h1 id="1de9f96e-057f-800d-b67c-c3534461b656" class="">Design</h1><p id="1de9f96e-057f-80e4-baa3-d99a806c7e32" class="">In class, we discussed what it means to create materials using a <strong>fully crossed 2x2 design</strong>.</p><p id="1df9f96e-057f-80be-8878-ead803629dfc" class="">In the garden-path effect experiment we saw in class had a design varied by Verb Type (intransitive-only vs. (in)transitive-flexible) and Ambiguity (ambiguous vs. unambiguous).</p><p id="1df9f96e-057f-804d-8f15-f898570a0575" class="">We can have the same design in the number agreement attraction effect, as well. Below has a <strong>fully crossed 2x2 design varied by </strong><strong><span style="border-bottom:0.05em solid">Attractor/Distractor noun</span></strong><strong> (singular vs. plural) &amp; </strong><strong><span style="border-bottom:0.05em solid">Grammaticality</span></strong><strong> (grammatical vs. ungrammatical)</strong>. Note that the subject remains as a singular noun for all conditions. So the grammaticality of the sentence depends on whether ‘was’ or ‘were’ is used as the main verb.<div class="indented"><figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="1df9f96e-057f-8060-af52-e43a328e6fac"><div style="width:100%"><ol type="a" id="1de9f96e-057f-800a-8b26-eb45345a543b" class="numbered-list" start="1"><li><mark class="highlight-purple">Plural</mark> - <mark class="highlight-teal">Grammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girls</mark> unsurprisingly <mark class="highlight-teal">was</mark> unhappy about all the noise.</li></ol><ol type="a" id="1de9f96e-057f-806d-80f9-d4764cb810db" class="numbered-list" start="2"><li><mark class="highlight-purple">Singular</mark> - <mark class="highlight-teal">Grammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girl</mark> unsurprisingly <mark class="highlight-teal">was</mark> unhappy about all the noise.</li></ol><ol type="a" id="1de9f96e-057f-8095-996a-fc9d3ab5d139" class="numbered-list" start="3"><li><mark class="highlight-purple">Plural</mark> - <mark class="highlight-teal">Ungrammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girls</mark> unsurprisingly <mark class="highlight-teal">were</mark> unhappy about all the noise.</li></ol><ol type="a" id="1de9f96e-057f-80c0-a985-c3508151b6db" class="numbered-list" start="4"><li><mark class="highlight-purple">Singular</mark> - <mark class="highlight-teal">Ungrammatical</mark><br/>The waitress who sat near <mark class="highlight-purple">the girl</mark> unsurprisingly <mark class="highlight-teal">were</mark> unhappy about all the noise.</li></ol></div></figure><p id="1df9f96e-057f-80c8-899c-dd816eda5256" class="">Recall that in the <strong>standard number agreement attraction effect</strong>, around the “<strong>critical region</strong>” (’was’/’were’), reading times (RTs) pattern as: <br/>(shorter RTs) a ~ b &lt; c &lt; d (longer RTs).</p></div></p><h1 id="1df9f96e-057f-80ae-8db0-d5d79f37560f" class="">Experimental material</h1><p id="1df9f96e-057f-8070-b32c-f89c9e09a2ca" class="">We will replicate the attraction effect, reported in Experiment 1 in <a href="https://doi.org/10.3389/fpsyg.2018.01566">Parker &amp; An’s (2018) study</a>. <mark class="highlight-default">You will see 48 items * 8 conditions in Experiment 1. </mark></p><p id="1df9f96e-057f-8058-b487-d756056e5e92" class=""><mark class="highlight-default"><strong>For this assignment, we will use the first 24 items (items 1-24) and only</strong></mark><mark class="highlight-default"><mark class="highlight-default_background"><strong> conditions e-h</strong></mark></mark><mark class="highlight-default"><strong>.</strong></mark></p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1df9f96e-057f-80b9-a41c-effbcd344053"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/flag-swallowtail_gray.svg"/></div><div style="width:100%"><p id="1df9f96e-057f-8079-b0d3-d1cd8cda0b66" class=""><strong>YOUR TASK</strong></p><p id="1df9f96e-057f-808b-bcdc-d956f90d3e15" class="">
+</p><p id="1df9f96e-057f-8048-8a98-d945ec19dcd2" class="">Copy and paste the relevant items to a dataframe or a .csv file. However you do this, the data frame should have </p><ol type="1" id="1df9f96e-057f-804b-b10a-ea6b110a4a59" class="numbered-list" start="1"><li><mark class="highlight-default"><strong>three columns: item_no, condition, and sentence. </strong></mark></li></ol><ol type="1" id="1df9f96e-057f-80d7-9706-d98be266c6b9" class="numbered-list" start="2"><li><mark class="highlight-default"><strong>24 (items) * 4 (conditions) + 1 (column header) rows.</strong></mark></li></ol><p id="1df9f96e-057f-80e0-9ba9-dda0ecbb25c6" class="">The first few rows would look something like this:</p><figure id="1df9f96e-057f-80df-a11a-c313c31d9721" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image.png"><img style="width:1119.005615234375px" src="A5%20Self-paced%20reading%20task%20a5_files/image.png"/></a></figure><p id="1df9f96e-057f-8033-954e-ea8650573780" class="">
+</p><ul id="1df9f96e-057f-80c5-9612-fb79faedfb16" class="toggle"><li><details open=""><summary><span style="border-bottom:0.05em solid">Click the toggle button for a Hint</span></summary><p id="1df9f96e-057f-80e6-afce-fe1da239bf85" class="">There are different ways of doing this. I prefer copy pasting the material into a spreadsheet first for a quick glimpse into the number of words and structure of the sentence.</p><ul id="1df9f96e-057f-8020-a8a2-d2eb3fb52802" class="bulleted-list"><li style="list-style-type:disc">One way to do this is to drag and copy all the items in Experiment 1 (including conditions a-d) and paste them into an Excel spread sheet. It will look like below.<figure id="1df9f96e-057f-800d-bc46-cc0c75bd7720" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%201.png"><img style="width:672px" src="A5%20Self-paced%20reading%20task%20a5_files/image%201.png"/></a></figure></li></ul><p id="1df9f96e-057f-8026-859e-e9fa0f20c33a" class="">
+</p><ul id="1df9f96e-057f-80ca-aef8-ed836e1a7cae" class="bulleted-list"><li style="list-style-type:disc">Select all (command + A in Mac) &gt; click Data &gt; click Text to columns. Then you will see something like below. Choose ‘Delimited’ &gt; click ‘Next’. <figure id="1df9f96e-057f-80ed-ab7d-f174918abd42" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%202.png"><img style="width:576px" src="A5%20Self-paced%20reading%20task%20a5_files/image%202.png"/></a></figure></li></ul><p id="1df9f96e-057f-800d-b130-c954b9908aac" class="">
+</p><ul id="1df9f96e-057f-80af-b917-defffd449c5e" class="bulleted-list"><li style="list-style-type:disc">Click ‘Space’. Then you’ll see all the words split into different columns based on space. Then click Next (and Next, again, on the next page as well.)<figure id="1df9f96e-057f-8021-9c52-c7134bf2d4a4" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%203.png"><img style="width:624px" src="A5%20Self-paced%20reading%20task%20a5_files/image%203.png"/></a></figure></li></ul><p id="1df9f96e-057f-80f3-8484-c725cb8003be" class="">
+</p><ul id="1df9f96e-057f-8012-a18d-f81291965932" class="bulleted-list"><li style="list-style-type:disc">You should see something like below. Then save into ‘your_file.csv’<figure id="1df9f96e-057f-8006-8e41-e37f2c106ef9" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%204.png"><img style="width:2262px" src="A5%20Self-paced%20reading%20task%20a5_files/image%204.png"/></a></figure></li></ul><p id="1df9f96e-057f-804f-84e2-f7cc84c6e9f7" class="">
+</p><ul id="1df9f96e-057f-8065-9602-ddb40f86ab7b" class="bulleted-list"><li style="list-style-type:disc">Now that you have your file saved, you can continue to use Excel or use Python to name the columns and join the words into a sentence.<ul id="1df9f96e-057f-80df-bfff-f8e65fcb952a" class="bulleted-list"><li style="list-style-type:circle">Excel<p id="1df9f96e-057f-80e4-9652-f5b0e37c3a4f" class="">In V1 cell, type in the following. Then use the fill handle to click and drag, or double click it to fill the rest of the cells. </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1df9f96e-057f-804d-8f09-ccf99fb7f60c" class="code code-wrap"><code class="language-R" style="white-space:pre-wrap;word-break:break-all">=TEXTJOIN(&quot; &quot;, TRUE, C1:U1)</code></pre><p id="1df9f96e-057f-8068-a3ad-d4a10f8f543f" class="">
+</p><p id="1df9f96e-057f-80cf-b4b0-c256be2c018e" class="">Once you’re done filling in the cells using the function, make sure to copy again and click “Paste Values” to only keep the generated text.</p><figure id="1df9f96e-057f-8055-b1c9-cb45b612679e" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%205.png"><img style="width:288px" src="A5%20Self-paced%20reading%20task%20a5_files/image%205.png"/></a></figure></li></ul><ul id="1df9f96e-057f-80ef-a26c-ee407806c78e" class="bulleted-list"><li style="list-style-type:circle">Python<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1df9f96e-057f-80cb-ae86-d25d5ee9fa80" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import pandas as pd
+
+# Read in your csv file; header=None because there isn&#x27;t a column name yet.
+df = pd.read_csv(&quot;your_file.csv&quot;, header=None)
+
+# Rename the first two columns
+df = df.rename(columns={0: &#x27;item_no&#x27;, 1: &#x27;condition&#x27;})
+
+# Join all remaining columns (from column 2 onward) as a sentence
+# df.iloc specifies the row and column
+# df.iloc[:, ] means all rows; 
+# df.iloc[:, 2:] means all rows, starting from the 2nd column (3rd, actually, since Python index starts from 0)
+# .astype(str) means that we will convert the type the values of the cells into a string type
+# .apply is applying a function that follows after
+# axis=1 means to apply the function in row direction
+df[&#x27;sentence&#x27;] = df.iloc[:, 2:].astype(str).apply(lambda x: &#x27; &#x27;.join(x.dropna()), axis=1)
+
+# Keep columns (dropping the columns with just words)
+df = df[[&#x27;item_no&#x27;, &#x27;condition&#x27;, &#x27;sentence&#x27;]]
+
+# See first few rows of the dataframe
+print(df.head())</code></pre></li></ul></li></ul></details></li></ul></div></figure><p id="1df9f96e-057f-80b4-b3c2-c4a8c69a4279" class="">
+</p><h1 id="1df9f96e-057f-80ca-8bfd-c7ffbef2afa0" class="">Setting up the experiment</h1><h2 id="1df9f96e-057f-80fb-a089-cd7fd2a9bbf1" class="">Create a new project</h2><ol type="1" id="1df9f96e-057f-80f9-8ff0-df6e09fc924b" class="numbered-list" start="1"><li>Create an empty project on PCIbex.</li></ol><ol type="1" id="1df9f96e-057f-8038-b5d2-c4c1e7deb5c6" class="numbered-list" start="2"><li>Unzip the downloaded .zip file. You will find four folders: chunk_includes, css_includes, data_includes, and js_includes. </li></ol><div id="1df9f96e-057f-80ca-8b0b-da749d82cd90" class="column-list"><div id="1df9f96e-057f-8050-9e30-fc99d5ae108c" style="width:50%" class="column"><p id="1df9f96e-057f-80bb-82bc-cd08673dbf96" class="">You will move some of the files in these folder to <strong>Folders and Files</strong> in your new PCIbex project page.</p><ul id="1df9f96e-057f-80a1-ad01-eb5fed92b6af" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Upload <strong>all the html files</strong> under /chunk_includes to <strong>Resources</strong>.</span><div class="indented"></div></li></ul><ul id="1df9f96e-057f-802a-8858-d382d10d2bcf" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Upload <code>main.js</code> under /data_includes to <strong>Scripts</strong>.</span><div class="indented"></div></li></ul><ul id="1df9f96e-057f-8070-86c7-fb8c0c842114" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Upload <code>global_z.css</code> under /css_includes to <strong>Aesthetics</strong>.</span><div class="indented"></div></li></ul><p id="1df9f96e-057f-8059-85ed-e8510ccaecae" class="">
+</p></div><div id="1df9f96e-057f-807d-ae51-e8b4c010ef91" style="width:50%" class="column"><figure id="1df9f96e-057f-807b-8e97-d6f90cfb527b" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%206.png"><img style="width:240px" src="A5%20Self-paced%20reading%20task%20a5_files/image%206.png"/></a></figure></div></div><p id="1df9f96e-057f-801c-8450-f9b2e42ac67a" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1df9f96e-057f-80a4-ad55-f681f3e63aaa"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/flag-swallowtail_gray.svg"/></div><div style="width:100%"><p id="1df9f96e-057f-8094-a28b-ea8f43155b27" class=""><strong>YOUR TASK</strong></p><p id="1df9f96e-057f-80d7-8904-fd08dd6afaf1" class="">
+</p><ol type="1" id="1df9f96e-057f-80f6-b4ea-e6fc627117ec" class="numbered-list" start="1"><li>Edit <code>Participant_info.html</code> so that it asks 1) participant’s age, and 2) participant’s first language.</li></ol><ol type="1" id="1df9f96e-057f-802f-8662-d4775f0901ca" class="numbered-list" start="2"><li>Edit <code>main.js</code> so that after the experiment, the participant can see a message that says, <figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="1df9f96e-057f-80f0-a44b-c698fbe64fa4"><div style="width:100%"><p id="1df9f96e-057f-8002-bec5-da140c529b72" class="">“This is the end of the experiment. Please proceed to the next page to submit your responses to the server. Do NOT close the browser until you see a message that says, “The results were successfully sent to the server.”</p></div></figure><p id="1df9f96e-057f-807a-8ffa-dbe59f7e326c" class="">(Once the participant sees this message, they should be able to move onto the next page by clicking a button.</p></li></ol><ol type="1" id="1df9f96e-057f-805a-aaf5-f7907da1d080" class="numbered-list" start="3"><li>Edit <code>main.js</code> so that it includes a self paced reading task experiment with 24 critical experimental items and 24 filler items. Filler items are already given. You should create new lines for the critical experimental items.</li></ol></div></figure><h2 id="1df9f96e-057f-802d-8397-c350ecec8aa1" class="">DashedSentence</h2><p id="1df9f96e-057f-804d-844a-c941af7a07f7" class="">For Task 3, you will use a controller called <code>DashedSentence</code>. See <a href="https://github.com/addrummond/ibex/blob/master/docs/manual.md#dashedsentence">here</a> for guidelines.</p><div id="1df9f96e-057f-80ec-a098-d7680216c1f1" class="column-list"><div id="1df9f96e-057f-8097-95bf-edfbfe8505e1" style="width:43.75%" class="column"><p id="1df9f96e-057f-8091-aaf7-d045bc4bb1aa" class="">You will create experimental items following the given syntax (see right).<div class="indented"><ul id="1df9f96e-057f-809d-bf57-ed9f3186c3db" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Use a code that marks which ones are the experimental target items (e.g., ”e_”) and which ones are the filler items (”filler”). This should be compatible with the code you’re using in <code>var shuffleSequence</code> .</span><div class="indented"></div></li></ul><ul id="1df9f96e-057f-80a8-a0c2-f57e61e5f313" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">Make sure you have four conditions (e, f, g, h) for each target item. </span><div class="indented"></div></li></ul><ul id="1df9f96e-057f-8015-972b-f90f5b21222d" class="to-do-list"><li><div class="checkbox checkbox-off"></div> <span class="to-do-children-unchecked">For the target items, the Question should ask if the participant has seen the distractor noun. Make sure you change the question based on the distractor number (e.g., the girl / the girls). </span><div class="indented"></div></li></ul></div></p></div><div id="1df9f96e-057f-80ff-bf52-dd3650717a3f" style="width:56.25%" class="column"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1df9f96e-057f-8018-a666-eb9e0eb84a31" class="code code-wrap"><code class="language-HTML" style="white-space:pre-wrap;word-break:break-all">[[&quot;e_e&quot;, 1], &quot;DashedSentence&quot;, {s: &quot;The waitress who sat near the girls unsurprisingly was unhappy about all the noise.&quot;}, &quot;Question&quot;, {q: &quot;Did you see the word &#x27;the girls&#x27;?&quot;, as: [[&quot;f&quot;,&quot;yes&quot;], [&quot;j&quot;,&quot;no&quot;]]}],
+
+[[&quot;e_f&quot;, 1], &quot;DashedSentence&quot;, {s: &quot;The waitress who sat near the girl unsurprisingly was unhappy about all the noise.&quot;}, &quot;Question&quot;, {q: &quot;Did you see the word &#x27;the girl&#x27;?&quot;, as: [[&quot;f&quot;,&quot;yes&quot;], [&quot;j&quot;,&quot;no&quot;]]}],
+
+[[&quot;filler&quot;, 101], &quot;DashedSentence&quot;, {s: [&quot;It&quot;, &quot;seemed&quot;, &quot;incredible&quot;, &quot;to&quot;, &quot;the&quot;, &quot;spectators&quot;, &quot;that&quot;, &quot;the&quot;, &quot;game&quot;, &quot;was&quot;, &quot;still&quot;, &quot;going&quot;, &quot;on&quot;, &quot;after&quot;, &quot;5&quot;, &quot;hours.&quot;]}, &quot;Question&quot;, {q: &quot;Was it a quick game?&quot;, as: [[&quot;f&quot;,&quot;yes&quot;], [&quot;j&quot;,&quot;no&quot;]]}],</code></pre></div></div><ul id="1df9f96e-057f-807e-91fa-fa84ed46b3f3" class="toggle"><li><details open=""><summary><span style="border-bottom:0.05em solid">Hint: Click the Toggle button to automize the process of converting csv data into PCIbex template</span></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1df9f96e-057f-801f-95bd-c25e38514f70" class="code code-wrap"><code class="language-Python" style="white-space:pre-wrap;word-break:break-all">import pandas as pd
+import string
+
+# Load the CSV file (assuming it&#x27;s comma-separated)
+df = pd.read_csv(&quot;parker_an_2018_or_your_file_name.csv&quot;)
+print(df.head(4))
+
+# Define the Ibex item template
+template_str = string.Template(
+    &#x27;[[&quot;e_${condition}&quot;, ${item_no}], &quot;DashedSentence&quot;, {s: &quot;${sentence}&quot;}, &#x27;
+    &#x27;&quot;Question&quot;, {q: &quot;${question}&quot;, as: [[&quot;f&quot;,&quot;yes&quot;], [&quot;j&quot;,&quot;no&quot;]]}],&#x27;
+)
+
+# Iterate through rows and generate formatted output
+for _, row in df.iterrows():
+# for idx, row in df.iterrows():
+    output = template_str.substitute(
+        condition=row[&quot;condition&quot;],
+        item_no=row[&quot;item_no&quot;],
+        sentence=row[&quot;sentence&quot;],
+        question=row[&quot;question&quot;]
+    )
+    print(output)</code></pre><p id="1df9f96e-057f-8065-9ccd-c0e5cced2dce" class="">
+</p><p id="1df9f96e-057f-803c-a21d-f238d6c6bb46" class="">In the code above, it’s assumed that you already have a column named ‘question’ in the csv file you’re reading (see below). </p><p id="1df9f96e-057f-80eb-93b1-f2e30388c390" class="">TIP: If you used Excel in copy pasting the materials from Parker &amp; An (2018), you can use the TEXTJOIN function again to automatically create the question based on the distractor words. </p><figure id="1df9f96e-057f-805f-9c6a-c2144d3ef87f" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%207.png"><img style="width:1088.9559326171875px" src="A5%20Self-paced%20reading%20task%20a5_files/image%207.png"/></a></figure></details></li></ul><p id="1df9f96e-057f-80b1-b71f-d8b1c9dfbb05" class="">
+</p><h1 id="1df9f96e-057f-806a-b3f3-cc4ca38c4cb7" class="">Publish experiment and collect sample data</h1><ol type="1" id="1df9f96e-057f-802a-afa4-f7d37ab15776" class="numbered-list" start="1"><li>Once you have checked everything works fine, publish the experiment! You can do this by clicking on the button under Actions. The button should turn into blue when the experiment is Published.<figure id="1df9f96e-057f-80db-97a6-d11e53ca9339" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%208.png"><img style="width:384px" src="A5%20Self-paced%20reading%20task%20a5_files/image%208.png"/></a></figure><figure id="1df9f96e-057f-8017-b306-c7af63331cfb" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%209.png"><img style="width:384px" src="A5%20Self-paced%20reading%20task%20a5_files/image%209.png"/></a></figure></li></ol><p id="1df9f96e-057f-805d-b8ef-d9824fb78f63" class="">
+</p><ol type="1" id="1df9f96e-057f-803d-813a-fe7b6a4704f6" class="numbered-list" start="2"><li>Then, click on Share to get the link to the experiment. Copy the <strong>Data-collection link</strong> (NOT the Demonstration-link).</li></ol><figure id="1df9f96e-057f-8003-8034-ef131f104d86" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%2010.png"><img style="width:384px" src="A5%20Self-paced%20reading%20task%20a5_files/image%2010.png"/></a></figure><ol type="1" id="1df9f96e-057f-804a-bf0b-c1be321cc463" class="numbered-list" start="3"><li>Share the copied link with <strong>two people. </strong>These will be your participants.<figure class="block-color-default_background callout" style="white-space:pre-wrap;display:flex" id="1df9f96e-057f-807e-bd3d-def5b4127688"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/exclamation-mark_gray.svg"/></div><div style="width:100%"><p id="1df9f96e-057f-8000-bf5a-dcf50de3e35d" class="">Your participant will be prompted to enter a participation code in the beginning of the experiment. Their code should be YourLastName_Number. For example, my last name is Kim, so my participant 1 should enter “KIM_1”; my participant 2 should enter “KIM_2”.</p></div></figure></li></ol><p id="1df9f96e-057f-80bb-80a8-c8b152dc28d8" class="">
+</p><ol type="1" id="1df9f96e-057f-806e-9bd6-db26d261aaa4" class="numbered-list" start="4"><li>Once you are done collecting the data, Unpublish the experiment (see Step 1 above).</li></ol><ol type="1" id="1df9f96e-057f-803e-b22d-e6fdb444584a" class="numbered-list" start="5"><li>Then download your data from Results on the right panel.<figure id="1df9f96e-057f-8099-8e2b-cf2c5f247717" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%2011.png"><img style="width:192px" src="A5%20Self-paced%20reading%20task%20a5_files/image%2011.png"/></a></figure><p id="1df9f96e-057f-8036-a1bc-d0b2a0a2c605" class="">Click on the three dots right Results. Then, you will see a message like below. Click on the <strong>‘Data-Collection’ tab. Click Download.</strong></p><figure id="1df9f96e-057f-80e2-ad63-d99aa5b9b30c" class="image"><a href="A5%20Self-paced%20reading%20task%20a5_files/image%2012.png"><img style="width:384px" src="A5%20Self-paced%20reading%20task%20a5_files/image%2012.png"/></a></figure></li></ol><p id="1df9f96e-057f-80ef-ba81-c79b6d49223c" class="">
+</p><h1 id="1df9f96e-057f-803a-b41c-ec12e2a1f49e" class="">Submission</h1><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="1df9f96e-057f-8032-92e3-ceca047fc402"><div style="width:100%"><p id="1df9f96e-057f-807f-86ce-c2d89767a9e4" class="">On Canvas, you should submit</p><ol type="1" id="1df9f96e-057f-805e-b713-f93dc527d2c1" class="numbered-list" start="1"><li><strong>URL: Your Demonstration-link </strong>(NOTE: This is NOT the Data-collecton link you used for collecting data.)</li></ol><ol type="1" id="1df9f96e-057f-80ee-8ed5-d9d7cefd4e9c" class="numbered-list" start="2"><li><strong>.csv file: </strong>The downloaded results file</li></ol></div></figure><p id="1df9f96e-057f-8078-8ba2-d0dc40f5f8b4" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
