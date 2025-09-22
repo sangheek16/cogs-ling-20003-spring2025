@@ -14,6 +14,6 @@ These Colab notebooks offer hands-on tutorials for key concepts covered in the c
 - **Getting probabilities of words — word predictability**  
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/12GeCjeVrdPUUPpQBZXwGqdkF1h14QxHE?usp=sharing)
   
-  - **Tokenization, logits, log probs, surprisal — comparison with human reading times**  
+- **Tokenization, logits, log probs, surprisal — comparison with human reading times**  
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](  https://colab.research.google.com/drive/1u-AHUUWfCIX4WyB6t23NY_SlRPFnhpjt?usp=sharing)
   
